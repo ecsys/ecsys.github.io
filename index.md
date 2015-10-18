@@ -9,7 +9,7 @@ category: About
 曾经想做个哲学生  
 暂时还没放弃自己的**三流码农**  
 
-**Vim/HHKB/Pentax/空格换行**  
+**Vim/HHKB/Pentax/空格缩进**  
 异教徒自行退散
 
 **照相/做饭/旅行**  
