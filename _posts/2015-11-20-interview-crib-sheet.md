@@ -66,7 +66,7 @@ public static LinkedList<Integer> merge(LinkedList<Integer> left, LinkedList<Int
 
 Implementation of QuickSort - Java
 
-``` java
+```java
 public static LinkedList<Integer> QuickSort(LinkedList<Integer> A, int low, int hi){
 	if (hi > low) {
 		int pivotLoc = partition(A, low, hi);
@@ -198,7 +198,7 @@ public static void DFS(Node r){
 **Binary Tree Reverse**
 
 - Solution 1 (without recursion)
-
+	- 
 ```
 Stact reverse = new Stack()
 reverse.push(root)
@@ -213,7 +213,7 @@ while(!stack.isEmpty()){
 ```
 
 - Solution 2 (Python)
-
+	- 
 ```python
 reverse(self, root)
 	# when the reverse method is first called, the default value of root is this Node
@@ -233,13 +233,11 @@ reverse(self, root)
 - Given an undirected weighted graph G = (V,E)
 - Want to find a subset of E with the minimum total weight that connects all the nodes into a tree
 - **Kruskal's Algorithm** (easy to code with O(e\*log(e)))
-	Idea
-
-	- The edge e* with the smallest weight has to be in the MST!
-	- After an edge is chosen, the two nodes at the ends can be merged into one set
-
-	Pseudo code
-
+	- Idea
+		- The edge e* with the smallest weight has to be in the MST!
+		- After an edge is chosen, the two nodes at the ends can be merged into one set
+	- Pseudo code
+		- 
 ```
 making each node a set
 sort the edges in increasing order of weight
@@ -252,15 +250,13 @@ repeat until there is only one set left
 ```
 
 - **Prim's Algorithm** (O(|E|+|V|log|V|) with Fibonacci heap and adjacency list)
-	Idea
-
-	- maintain a set S that starts out with a single node s
-	- find the smallest weighted edge e* = (u, v) that connects u ∈ S and v !∈ S
-	- add e* to the MST, add v to S
-	- repeat until S = V
-
-	Pseudo code
-
+	- Idea
+		- maintain a set S that starts out with a single node s
+		- find the smallest weighted edge e* = (u, v) that connects u ∈ S and v !∈ S
+		- add e* to the MST, add v to S
+		- repeat until S = V
+	- Pseudo code
+		- 
 ```
 initialize S to {s}, D_v to cost(s, v) for every v
 repeat until S = V
@@ -365,9 +361,7 @@ repeat until S = V
 **Shortest path algorithm**
 
 - **Dijkstra** (O(E+V logV))
-	
 	- Idea
-
 		- Assign distance of 0 to the initial node and infinity to other nodes
 		- Mark initial node as current node and other nodes as unvisited nodes
 		- For Node.cur consider all unvisited neighbours
@@ -376,7 +370,6 @@ repeat until S = V
 		- Mark the current node visited
 		- If the destination is visited, stop
 		- Mark the node with smallest tentative distance as cur and loop
-	
 	- Pseduo code
 
 ```
@@ -405,9 +398,7 @@ function Dijkstra(Graph, source):
 ```
 	
 - **A* Search** O(b^d) for both time and space (b:breadth d:depth)
-
 	- Idea
-
 		- Let g(x) represent past cost
 		- h(x) represents heuristic estimate
 		- f(x) = g(x) + h(x)
@@ -417,7 +408,6 @@ function Dijkstra(Graph, source):
 		- The lower the f(x), the higher the priority, remove the lowest f(x) from the queue
 		- Update f(x), g(x) and h(x) of the neighbours of the popped node, push updated info to the queue
 		- Loop the algorithm until we pop the goal node from the queue
-
 	- Pseduo code
 
 ```
@@ -468,7 +458,7 @@ Method for solving complex problems by breaking them down into simpler sub-probl
 		- if $x_m=1$, the rest of the terms must sum to n-1
 		- thus, the number of sums that end with $x_m=1$ is equal to $D_{n-1}$ (also think about $x_m=3, 4$)
 		- then we have $D_n = D_{n-1} + D_{n-3} + D_{n-4}$
-		
+		- 
 ```
 set D[0] = D[1] = D[2] = 1, D[n<0] = 0, D[3] = 2
 for(i = 4; i<=n; i++)
@@ -490,7 +480,7 @@ for(i = 4; i<=n; i++)
 	- otherwise, either $x_i$ or $y_j$ does not contribute to the LCS, so one can be dropped
 		- $D_{ij} = max(D_{i-1,j},D_{i,j-1})$
 	- find and solve the base cases: $D_{i0} = D_{0j} = 0$
-
+	- 
 ```java
 for(i = 0; i <= n; i++) D[i][0] = 0;
 for(j = 0; j <= m; j++) D[0][j] = 0; 
@@ -536,30 +526,160 @@ for(i = 1; i <= n; i++) {
 
 ## Database
 
-### SQL join
+### Entity-Relation Model
 
-- Inner join
-	- SELECT * FROM A INNER JOIN B ON AA = BB
-	- Inner join only returns matched result, NULL tuples will be discarded
-	- A inner join B = B inner join A
-- Outer join
-	- Left outer join
-		- SELECT * FROM A LEFT OUTER JOIN B ON AA = BB
-			- return all AA elements in table A, it will display NULL in BB column if it have a match
-		- SELECT * FROM A LEFT OUTER JOIN B ON AA = BB WHERE BB is NULL
-			- return elements in AA and not in BB
-	- Right outer join
-		- similar to Left outer join but having all elements in the right table
-	- Full outer join
-		- SELECT * FROM A FULL JOIN B ON AA = BB
-		- having all elements in AA and BB
-- Cross join
-	- SELECT * FROM A CROSS JOIN B
-	- for each element in A, match every tuple in B with it
-	- this is a Cartesian product, the size of cross join is N\*M
+Key: Minimum set of attributes whose values uniquely identify an entity in an entity set.  
+Domain: Each attribute has a domain, e.g. Integer, 20-character string, etc.
 
+IS-A Hierarchy
+
+- subclass is a special case of its supercalss
+- subclass has fewer entites and more properties
+- "A is-a B", then A is the subclass and key only stores in B(superclass) since each entity in A has the key attribute in B
+
+Realtionship: Association among two or more entites. E.g. employee A works in a department X could have a works_in relation set contains keys from worker set and department set and have an extra attribute of starting time .
+
+- key contraint: the condition each department is managed by only one employee is called a key constraint on Manages(relationship set).
+- participation constraint: the condition each employee must work in a department, i.e. the participation of Employee in Work_in is total.
+
+### SQL
+- Data Definition Language: defines the schema of a database
+	- CREATE TABLE Students (sid INT, name VARCHAR(20), login CHAR(10) major VARCHAR(20))
+	- DROP TABLE Students
+	- ALTER TABLE Students ADD COLUMN firstYear:integer
+- Data Manipulation Language: manipulates the instances of realtions
+	- INSERT INTO Students (sid,name,faculty) VALUES(53688, Chang , Eng)
+	- DELETE FROM Students WHERE name = Chang
+	- UPDATE Students SET faculty = Science WHERE sid = 53688
+	- SELECT name, major FROM Students WHERE faculty = Science
+- Keys
+	- Primary key: if more than one attribute has all unique values, choose one to be the primary key. Note, primary key can be a set of attributes.
+	- Foreign key: set of fields in one relation that is used to refer to a tuple in another relation.
+		- Must correspond to the primary key of the second relation.
+		- Foreign key constraint: the foreign key value of a tuple must represent an existing tuple in the referred relation
+		- 
+``` sql
+CREATE TABLE Enrolled (
+	sid INT NOT NULL,  
+	cid CHAR(8) NOT NULL,  
+	grade CHAR(2),  
+	PRIMARY KEY (sid,cid),  
+	FOREIGN KEY (sid) REFERENCES Students
+);
+```
+
+- Select `SELECT desired attributes FROM list of relations WHERE qualification ORDER BY attributes ASC|DESC`
+	- desired attributes
+		- renaming: `SELECT sname, rating+1 AS upgrade FROM Skaters`
+		- duplicate elimination: `SELECT DISTINCT sname FROM Skaters`
+	- list of relations
+		- comma between relations means cross product
+		- Join equals Cross Product and Selection
+			- `SELECT sname FROM Skaters S, Participates P WHERE S.sid = P.sid`
+			- `SELECT sname FROM Skaters JOIN Participates ON Skaters.sid = Participates.sid`
+	- qualification
+		- attr1 op const OR attr1 op attr2
+		- op is one of <, =, >, <>, <=, >=, LIKE
+		- `WHERE name = Cheng AND NOT age = 18`
+		- `WHERE name LIKE %e_g` (%: any string, _:any character)
+		- IN operator for nested query
+			- 
+```sql
+SELECT S.sname
+FROM Skaters S
+WHERE S.sid IN (SELECT P.sid
+				FROM Participates P
+				WHERE P.cid = 103)
+```
+		- EXIST operator
+			- 
+```sql
+SELECT S.sname
+FROM Skaters S
+WHERE EXISTS (SELECT *
+				FROM Participated P
+				WHERE P.cid = 103 AND
+				P.sid = S.sid)
+```
+		- ANY/ALL operator
+			- WHERE attr op ANY/ALL
+			- op is one of <, =, >, <>, <=, >=
+			- 
+```sql
+SELECT *
+FROM Skaters
+WHERE rating >= ALL (SELECT rating
+						FROM Skaters)
+```
+- Union/Intersection/Difference
+	- used between SELECT clauses
+	- same number of attributes on both side
+	- the attributes, taken in order, must have same type
+	- 
+```sql
+SELECT P.sid
+FROM Participates P, Competition C
+WHERE P.cid = C.cid AND C.type = local
+UNION
+SELECT P.sid
+FROM Participates P, Competition
+WHERE P.cid = C.cid AND C.type = regional
+```
+	- UNOIN ALL/INTERSECT ALL/EXCEPT ALL does remove duplicates
+
+- Join
+	- Inner join
+		- `SELECT * FROM A INNER JOIN B ON AA = BB`
+		- Inner join only returns matched result, NULL tuples will be discarded
+		- A inner join B = B inner join A
+	- Outer join
+		- Left outer join
+			- `SELECT * FROM A LEFT OUTER JOIN B ON AA = BB`
+				- return all AA elements in table A, it will display NULL in BB column if it have a match
+			- `SELECT * FROM A LEFT OUTER JOIN B ON AA = BB WHERE BB is NULL`
+				- return elements in AA and not in BB
+		- Right outer join
+			- similar to Left outer join but having all elements in the right table
+		- Full outer join
+			- `SELECT * FROM A FULL JOIN B ON AA = BB`
+			- having all elements in AA and BB
+	- Cross join
+		- `SELECT * FROM A CROSS JOIN B`
+		- for each element in A, match every tuple in B with it
+		- this is a Cartesian product, the size of cross join is N\*M
+	- 
 ![SQLJOIN](http://cdn.powerxing.com/imgs/sql-join.png)
 
+- Advanced SQL queries
+	- Aggregation
+		- SUM, AVG, MAX, MIN apply to single attribute, count(*) apply to all rows
+		- Note: count(*) counts NULL values
+		- `SELECT avg(age) FROM Skaters WHERE rating = 10`
+		- `SELECT count(DISTINCT sid) FROM Participates`
+		- if any aggregation is used, all attributes listed in SELECT clause must either be aggregated or appear in a group-by clause
+	- Grouping
+		- `SELECT avg(age) FROM Skaters GROUP BY rating`
+		- A group is defined as a set of tuples that have the same value for all attributes in the grouping list
+		- One answer tuple is generated per group.
+		- Having clauses are selections on Groups
+			- Only consider rating levels with at least two skaters:
+			- `SELECT rating, min(age) FROM Skaters GROUP BY rating HAVING COUNT(*) >= 2`
+	- View
+		- A view is just an unmaterialized relation: we store a definition rather than a set of tuples.
+		- Use a view as intermediate relation
+			- Find those ratings for which the average age is the minimum over all ratings
+			- 
+```sql
+Create VIEW Temp (rating, avgage)
+	AS SELECT S.rating, AVG (S.age) AS avgage
+		FROM Skaters S
+		GROUP BY S.rating)
+SELECT T.rating, T.avgage
+	FROM Temp T
+	WHERE T.avgage = (SELECT MIN (T2.avgage)
+						FROM Temp T2)
+```
+	- TODO: Triggers/Constraints
 
 *****
 
