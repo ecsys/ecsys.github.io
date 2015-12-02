@@ -1,12 +1,12 @@
 ---
 layout: post
-title: Interview Crib Sheet
+title: Tech Interview Crib Sheet
 permalink: /interview-crib-sheet.html
 category: Tech
 tag: interview, crib sheet, cheat sheet, sorting, algorithm, data structure
 ---
 
-Last modified: Sept 2015
+Last modified: Dec 2015
 
 ## Sorting Algorithms
 
@@ -636,9 +636,59 @@ https://blog.udemy.com/java-interview-questions/
 
 ## Python
 
+### Built-in Structures in Python (List/Tuple/Dictionary/Set)
+
+- List `list_ex=[1, 2, 3, 'a', object]`
+	- List can store elements in any type 
+	- List is changable
+	- List doesn't cost much memory but the searching time slows down as the size goes up
+	- `list.append(x)` # x can be in any type and x will be appended to the end of the list
+	- `list.entend(L)` # L has to be a list and the whole L will be appeneded to the list
+	- `list.insert(i, x)` # insert element x at index i
+	- `list.remove(x)` # remove the first appearance of x in the list, raise exception if not existed
+	- `list.pop(i)` # remove and return element at i, i is len(list)-1 is not specified
+	- `list[i]` # get items at index i, raise exception if out of range
+	- `list.index(x)` # get the index of the first appearance of x, raise exception if not existed
+	- `list.count(x)` # get the number of x existed in the list
+	- `len(list)` # return the size of the list
+	- `list.sort(parameters...)` # sort the list according to the parameters of the method, returns None
+	- `list.reverse()` # reverse order of the list
+
+- Tuple `tuple_ex=(1, 2, '3', 4, 5.555)`
+	- Tuple is similar to List, but it is not changable
+		- elements in a tuple cannot be changed but the content of the elment can be changed
+		- `tuple_ex=(1, 2, List_ex)`
+		- `List_ex = ["things here can be changed"]`
+		- insert()/append()/entend()/pop()/... cannot be applied to tuple due to the non-changeability
+	- `tuple_singular = (1,)` # comma needed when there is only one element in a tuple
+
+- Dictionary `dict_ex={'key1':value1, 'key2':value2, 3:value3}`
+	- Elements are unordered
+	- Fast at searching time but cost a lot of memory space
+	- keys in a dictionary must be unique
+	- keys must in non-changeable types like string, int, float...
+	- `dict['key_n'] = value_n` # add an item to a dict
+	- `dict.keys()` # get keys in a list
+	- `dict.values()` # get values in a list
+	- `if k in dict: ` # ture is k is in the keys of dict
+	- `dict['name']` # get the value of key 'name', raise exception if 'name' cannot be found
+	- `dict.get('name', default)` # return dict['name'] if existed, return default value if not found
+	- `sorted(d.items(), lambda x,y: cmp(x[1],y[1]))` # return sorted elements(tuples) by value in a list
+	- `sorted(dict)` # return sorted keys in a list
+
+- Set `set = {1, 2, 3, 4, a, 3, 2, 1}`
+	- Elements are unordered and unique
+	- Like keys in Dictionary, set can only contains unchangeable types, i.e. it cannot have list/dict..
+	- the inner structure of set is similar to dictionary but is doesn't have values
+	- `set(list_1)` # remove duplicats in a list and return it as a unordered set
+	- `set(string_1)` # retrun a set of unique chars in string_1
+	- `set.add(x)/remove(x)/discard(x)` # remove(x) raise KeyError if x not existed, discard(x) doesn't raise exception
+	- `set.pop()` # remove a random element in set, raise KeyError if empty
+	- `set.union(t)/intersection(t)/difference(t)/symmetric_difference(t)` # sets opeations
+
 *****
 
-## Other Classical Coding Examples
+## Other Classic Coding Examples
 
 ### Eight Queen Puzzle Using Backtracking
 
