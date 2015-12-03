@@ -476,7 +476,7 @@ for(i = 4; i<=n; i++)
 - Solution
 	- let $D_{ij}$ be the length of the LCS of $x_1 ... x_i$ and $y_1 ... y_j$
 	- if $x_i = y_j$, they both contribute to the LCS
-		- $D_{ij} = D{i-1,j-1} + 1$
+		- $D_{ij} = D_{i-1,j-1} + 1$
 	- otherwise, either $x_i$ or $y_j$ does not contribute to the LCS, so one can be dropped
 		- $D_{ij} = max(D_{i-1,j},D_{i,j-1})$
 	- find and solve the base cases: $D_{i0} = D_{0j} = 0$
@@ -544,14 +544,14 @@ Realtionship: Association among two or more entites. E.g. employee A works in a 
 
 ### SQL
 - Data Definition Language: defines the schema of a database
-	- CREATE TABLE Students (sid INT, name VARCHAR(20), login CHAR(10) major VARCHAR(20))
-	- DROP TABLE Students
-	- ALTER TABLE Students ADD COLUMN firstYear:integer
+	- `CREATE TABLE Students (sid INT, name VARCHAR(20), login CHAR(10) major VARCHAR(20))`
+	- `DROP TABLE Students`
+	- `ALTER TABLE Students ADD COLUMN firstYear:integer`
 - Data Manipulation Language: manipulates the instances of realtions
-	- INSERT INTO Students (sid,name,faculty) VALUES(53688, Chang , Eng)
-	- DELETE FROM Students WHERE name = Chang
-	- UPDATE Students SET faculty = Science WHERE sid = 53688
-	- SELECT name, major FROM Students WHERE faculty = Science
+	- `INSERT INTO Students (sid,name,faculty) VALUES(53688, Chang , Eng)`
+	- `DELETE FROM Students WHERE name = Chang`
+	- `UPDATE Students SET faculty = Science WHERE sid = 53688`
+	- `SELECT name, major FROM Students WHERE faculty = Science`
 - Keys
 	- Primary key: if more than one attribute has all unique values, choose one to be the primary key. Note, primary key can be a set of attributes.
 	- Foreign key: set of fields in one relation that is used to refer to a tuple in another relation.
