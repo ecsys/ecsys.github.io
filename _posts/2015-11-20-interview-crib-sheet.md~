@@ -476,7 +476,7 @@ for(i = 4; i<=n; i++)
 - Solution
 	- let $D_{ij}$ be the length of the LCS of $x_1 ... x_i$ and $y_1 ... y_j$
 	- if $x_i = y_j$, they both contribute to the LCS
-		- $D_{ij} = D{i-1,j-1} + 1$
+		- $D_{ij} = D_{i-1,j-1} + 1$
 	- otherwise, either $x_i$ or $y_j$ does not contribute to the LCS, so one can be dropped
 		- $D_{ij} = max(D_{i-1,j},D_{i,j-1})$
 	- find and solve the base cases: $D_{i0} = D_{0j} = 0$
@@ -735,6 +735,69 @@ SELECT T.rating, T.avgage
 	- Provide contains() method to check whether an object is already contained
 	- Should be used when needs to maintain a unique list
 	- Unsynchronized
+
+### File Operations
+
+- FileInputStream/FileOutputStream
+	- Read and write bytes from/to file or sockets
+- FileReader/FileWriter
+	- FileReader extends InputStreamReader, it uses character encoding provided to this class
+	- You can specify the encoding format like "UTF-8" or "Unicode"
+	- default character encoding is the encoding of platform on which your Java program is running
+	- use BufferedReader(FileReader) to read lines
+		- BufferedReader is synchronized
+- Scanner
+	- read file line by line
+	- can set patterns for dilimiting
+	- not synchronized
+
+```java
+public static void main(String args[]) throws IOException{
+	
+	// FileInputStream/FileOutputStream example
+	FileInputStream fis = new FileInputStream("input.txt");
+	FileOutputStream fos = new FileOutputStream("output.txt");
+	try { 
+		int data = fis.read(); 
+		while (data != -1) { 
+			fos.write(data);
+			data = fis.read();
+		}
+	} catch (IOException e) { 
+		System.out.println("Failed to read binary data from File"); 
+		e.printStackTrace(); 
+	}
+
+	// FileReader/FileWriter example
+	FileReader inputFile = new FileReader("input.txt");
+	FileWriter outputFile = new FileWriter("output.txt");
+	BufferedReader br = new BufferedReader(inputFile);
+	BufferedWriter bw = new BufferedWriter(outputFile);
+	try {
+		String s = br.readLine();
+		while (s!=null) {
+			bw.write(s+'\n');
+			s = br.readLine();
+		}
+	}finally {
+		if (bw != null) bw.close();
+	}
+
+	// Scanner example
+	File file = new File("input.txt");
+	try {
+		Scanner sc = new Scanner(file);
+		while (sc.hasNextLine()) {
+			System.out.println(sc.nextLine());
+		}
+		sc.close();
+	} 
+	catch (FileNotFoundException e) {
+		e.printStackTrace();
+	}
+}
+```
+
 
 **ArrayList vs LinkedList vs Vector**
 

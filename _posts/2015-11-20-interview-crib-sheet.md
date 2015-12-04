@@ -736,6 +736,69 @@ SELECT T.rating, T.avgage
 	- Should be used when needs to maintain a unique list
 	- Unsynchronized
 
+### File Operations
+
+- FileInputStream/FileOutputStream
+	- Read and write bytes from/to file or sockets
+- FileReader/FileWriter
+	- FileReader extends InputStreamReader, it uses character encoding provided to this class
+	- You can specify the encoding format like "UTF-8" or "Unicode"
+	- default character encoding is the encoding of platform on which your Java program is running
+	- use BufferedReader(FileReader) to read lines
+		- BufferedReader is synchronized
+- Scanner
+	- read file line by line
+	- can set patterns for dilimiting
+	- not synchronized
+
+```java
+public static void main(String args[]) throws IOException{
+	
+	// FileInputStream/FileOutputStream example
+	FileInputStream fis = new FileInputStream("input.txt");
+	FileOutputStream fos = new FileOutputStream("output.txt");
+	try { 
+		int data = fis.read(); 
+		while (data != -1) { 
+			fos.write(data);
+			data = fis.read();
+		}
+	} catch (IOException e) { 
+		System.out.println("Failed to read binary data from File"); 
+		e.printStackTrace(); 
+	}
+
+	// FileReader/FileWriter example
+	FileReader inputFile = new FileReader("input.txt");
+	FileWriter outputFile = new FileWriter("output.txt");
+	BufferedReader br = new BufferedReader(inputFile);
+	BufferedWriter bw = new BufferedWriter(outputFile);
+	try {
+		String s = br.readLine();
+		while (s!=null) {
+			bw.write(s+'\n');
+			s = br.readLine();
+		}
+	}finally {
+		if (bw != null) bw.close();
+	}
+
+	// Scanner example
+	File file = new File("input.txt");
+	try {
+		Scanner sc = new Scanner(file);
+		while (sc.hasNextLine()) {
+			System.out.println(sc.nextLine());
+		}
+		sc.close();
+	} 
+	catch (FileNotFoundException e) {
+		e.printStackTrace();
+	}
+}
+```
+
+
 **ArrayList vs LinkedList vs Vector**
 
 - ArrayList
