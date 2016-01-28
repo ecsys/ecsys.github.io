@@ -1,6 +1,6 @@
 ---
 layout: post
-title: C++ Primer(5th Edition) Notes
+title: C++ Primer(5th Edition) Notes - Chapter 2
 permalink: /cpp-primer-notes-ch2.html
 category: Tech
 tag: C++, C++ Primer
