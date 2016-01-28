@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<!--[if lte IE 9]><meta http-equiv="refresh" content="0;url=/ie.html"><![endif]-->
+
+<title>C++ Primer(5th Edition) Notes - Chapter 2 | ECSYS</title>
+<meta name="author" content="Ecsys">
+
+
+
+
+<link rel="shortcut icon" href="http://7u2ho6.com1.z0.glb.clouddn.com/site-favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="https://stackedit.io/res-min/themes/base.css" />
+
+<link href="/pages/rss.xml" rel="alternate" title="ECSYS" type="application/atom+xml">
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
+
+
+  </head>
+  <body>
+    <aside id="sidebar">
+  <nav id="tags">
+    <a href="/index.html" id="avatar" style="background-image:url(/assets/img/avatar.jpg)"></a>
+
+    <ul id="tags__ul">
+      <li id="pl__all" class="tags__li tags-btn active">ls -a</li>
+       
+        <li id="about" class="tags__li tags-btn">about</li>
+       
+        <li id="tech" class="tags__li tags-btn">tech</li>
+      
+    </ul>
+
+    <div id="tags__bottom">
+      <a href="mailto:tbd@tbd.tbd" id="icon-email" class="tags-btn fontello"></a>
+      <a href="/pages/rss.xml" id="icon-feed" class="tags-btn fontello"></a>
+    </div>
+  </nav> <!-- end #tags -->
+
+  <div id="posts-list">
+    <form action="" id="search-form">
+      <a href="/index.html" id="mobile-avatar" style="background-image:url(/assets/img/avatar.jpg)"></a>
+      <!-- NOTE: input field is disabled by default -->
+      <input id="search-input" type="text" placeholder="Search..." disabled >
+    </form>
+
+    <nav id="pl__container">
+    
+      <a class="tech pl__all" href="/cpp-primer-notes-ch2.html"><span class="pl__circle"></span><span class="pl__title">C++ Primer(5th Edition) Notes - Chapter 2</span><span class="pl__date">Jan 2016</span></a>
+    
+      <a class="tech pl__all" href="/intro-to-hadoop-and-mapreduce.html"><span class="pl__circle"></span><span class="pl__title">Intro to Hadoop and MapReduce - Notes</span><span class="pl__date">Dec 2015</span></a>
+    
+      <a class="tech pl__all" href="/interview-crib-sheet.html"><span class="pl__circle"></span><span class="pl__title">Tech Interview Crib Sheet</span><span class="pl__date">Nov 2015</span></a>
+    
+      <a class="about pl__all" href="/index.html"><span class="pl__circle"></span><span class="pl__title">Ecsys</span><span class="pl__date">Nov 2015</span></a>
+    
+      <a class="about pl__all" href="/wo.html"><span class="pl__circle"></span><span class="pl__title">憋看我</span><span class="pl__date">Oct 2015</span></a>
+    
+    </nav>
+  </div> <!-- end #posts-list -->
+</aside> <!-- end #sidebar -->
+
+    <div id="post">
+      <div id="pjax">
+        <article id="post__content">
+  <h1 id="post__title" data-identifier="20160128">C++ Primer(5th Edition) Notes - Chapter 2</h1>
+
+<div class="container"><h1 id="c-primer5th-edition-notes">C++ Primer(5th Edition) Notes</h1>
+
+<p><em>I am a beginner in C++ with programming experience in Java and python. This is my reading notes of the <strong>C++ Primer 5E by Lippman, Lajoie, Moo</strong> book.  I did not include every detail in this note but readers who have a solid background in any general-purpose languages and OOP should find no difficulty reading this.</em></p>
+
+<p><em>The structure of this note will strictly follow the book. I will try to make this note a brief summary of the book without losing any critical information.</em></p>
+
+<h2 id="chapter-2-variables-and-basic-types">Chapter 2 Variables and Basic Types</h2>
+
+
+
+<h3 id="21-primitive-built-in-types">2.1 Primitive Built-in Types</h3>
+
+
+
+<h4 id="211-arithmetic-types">2.1.1 Arithmetic Types</h4>
+
+<p>Integral Types</p>
+
+<ul>
+<li><code>bool</code> - True/False</li>
+<li><code>char</code> - 8 bits, can be either signed char or unsigned char by default</li>
+<li><code>char16_t</code>,<code>char32_t</code> - intended for Unicode characters</li>
+<li><code>short</code>, <code>int</code>, <code>long</code>, <code>long long</code> - store integers, <code>long long</code> was introduced by <em>C++11</em></li>
+</ul>
+
+<p>Floating-point types</p>
+
+<ul>
+<li><code>float</code> - single-precision floating-point, &gt;= 6 significant digits</li>
+<li><code>double</code> - double-precision floating-point, &gt;= 10 significant digits</li>
+<li><code>long double</code> - extended-precision floating-point - for special purpose floating-point hardware</li>
+</ul>
+
+<p><strong>Rule of Thumb</strong></p>
+
+<ul>
+<li>Use unsigned type when dealing with non-negative values</li>
+<li>Use <code>int</code>for integer arithmetic, use <code>long long</code> when <code>int</code> is not enough</li>
+<li>Specify <code>signed char</code> or <code>unsigned char</code> when you need tiny integers</li>
+<li>Use <code>double</code> for floating-point computations</li>
+</ul>
+
+<h4 id="212-type-conversions">2.1.2 Type Conversions</h4>
+
+<ul>
+<li>non<code>bool</code> -&gt; <code>bool</code> - False if 0, True otherwise</li>
+<li><code>bool</code> -&gt; non<code>bool</code> - 1 if True, 0 if False</li>
+<li>floating-point type -&gt; integral type - only integral parts are saved (e.g. 3.14 -&gt; 3.0)</li>
+<li>out-of-range - &gt; unsigned integral type - remainder of the value modulo the number of values the target type can hold(e.g. assign -1 to 8-bit unsigned char -&gt; 255)</li>
+<li>out-of-range -&gt; signed type - undefined. Anything could happen.</li>
+</ul>
+
+<p><strong>Do not mix signed and unsigned types</strong> <br>
+Signed type will be converted to unsigned type automatically if they appear in a same expression. </p>
+
+
+
+<pre class="prettyprint"><code class="language-c++ hljs objectivec"><span class="hljs-keyword">int</span> a = -<span class="hljs-number">42</span>; 
+<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> b = <span class="hljs-number">10</span>;
+a + b; <span class="hljs-comment">// a will be converted to unsigned int before the addition is done</span>
+       <span class="hljs-comment">// result is 4294967264</span></code></pre>
+
+
+
+<h4 id="213-literals">2.1.3 Literals</h4>
+
+<p>A value is a literal if its value is self-evident. Every values has a type which is determined by its form and value.</p>
+
+<p>Integer literals can be decimal, octal, or hexadecimal notation. By default, a decimal literal has the smallest signed type(<code>int</code>, <code>long</code>, <code>long long</code>) that it fits in; Octal and hexadecimal literals can have either signed or unsigned types, it should be explicitly specified.</p>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-number">20</span>   <span class="hljs-comment">// decimal integer</span>
+<span class="hljs-number">024</span>  <span class="hljs-comment">// start with 0, octal integer</span>
+<span class="hljs-number">0x14</span> <span class="hljs-comment">// hexadecimal integer</span></code></pre>
+
+<p>Floating-point literals are always positive. Even if there is a minus sign, it is a minus operator. By default, floating-point literals have type double.</p>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-number">3.14159</span>   <span class="hljs-comment">// floating-point</span>
+<span class="hljs-number">3.14159e0</span> <span class="hljs-comment">// floating-point, scientific notation</span></code></pre>
+
+<p>A character literal can be a plain character (e.g., <code>'x'</code>), an escape sequence (e.g., <code>'\t'</code>), or a universal character (e.g., <code>'\u02C0'</code>). String literal has type <code>char[]</code> with a <code>'\0'</code> appended. Two strings literals that are separated by spaces, tabs or newlines, are concatenated into a single literal. </p>
+
+<p>In general escape sequence, <code>\x</code> is followed by one or more hexadecimal digits and <code>\</code> is followed by at most three octal digits. The value represents the numerical values of the character.</p>
+
+<pre class="prettyprint"><code class="language-cpp hljs ">L<span class="hljs-string">'a'</span>           <span class="hljs-comment">// character literal, forcing wchar_t type</span>
+<span class="hljs-string">"Hello World!"</span> <span class="hljs-comment">// String literal</span>
+u8<span class="hljs-string">"hi!"</span>        <span class="hljs-comment">// String literal, char[] type, utf-8 encoding</span>
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; <span class="hljs-string">"Hi \x4dO\115!\n"</span>; <span class="hljs-comment">// prints Hi MOM! followed by a newline (in ASCII)</span></code></pre>
+
+<p>Specifying the Type of a Literal</p>
+
+<table>
+<thead>
+<tr>
+  <th>Character and String Literals</th>
+  <th></th>
+  <th></th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>Prefix</td>
+  <td>Meaning</td>
+  <td>Type</td>
+</tr>
+<tr>
+  <td>u</td>
+  <td>Unicode 16 character</td>
+  <td>char16_t</td>
+</tr>
+<tr>
+  <td>U</td>
+  <td>Unicode 32 character</td>
+  <td>char32_t</td>
+</tr>
+<tr>
+  <td>L</td>
+  <td>wide character</td>
+  <td>whar_t</td>
+</tr>
+<tr>
+  <td>u8</td>
+  <td>utf-8 (String literal only)</td>
+  <td>char</td>
+</tr>
+</tbody></table>
+
+
+<table>
+<thead>
+<tr>
+  <th>Integer Literals</th>
+  <th></th>
+  <th>Floating-Point Literals</th>
+  <th></th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>Suffix</td>
+  <td>Minimum Type</td>
+  <td>Suffix</td>
+  <td>Type</td>
+</tr>
+<tr>
+  <td>u or U (e.g.<code>18u)</code></td>
+  <td>unsigned</td>
+  <td>f or F</td>
+  <td>float</td>
+</tr>
+<tr>
+  <td>l or L (use L to prevent mistaking from 1)</td>
+  <td>long</td>
+  <td>l or L</td>
+  <td>long double</td>
+</tr>
+<tr>
+  <td>ll or LL</td>
+  <td>long long</td>
+  <td></td>
+  <td></td>
+</tr>
+</tbody></table>
+
+
+<h3 id="22-variables">2.2 Variables</h3>
+
+
+
+<h4 id="221-variable-definitions">2.2.1 Variable Definitions</h4>
+
+<p>A variable provides us with named storage that out programs cam manipulate. The size and layout of the storage is determined by the variable’s type.</p>
+
+<p><strong>What is an object?</strong> <br>
+In this note, an object is a region of memory that has a type. We will freely use the term <em>object</em> regardless of whether of e object has built-in or class type, is named or unnamed,or can be read or written.</p>
+
+<p>An object that is initialized gets the specified value at the moment it is created. A very important concept here is that <strong>initialization and assignment are different operations</strong> in C++. Initialization happens when a variable is given a value when it is created whereas assignment obliterates an object’s current value and replaces that value with a new one.</p>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> a = <span class="hljs-number">0</span>;  <span class="hljs-comment">// list initialization, *C++11* feature</span>
+<span class="hljs-keyword">int</span> a = {<span class="hljs-number">0</span>};
+<span class="hljs-keyword">int</span> a{<span class="hljs-number">0</span>};   <span class="hljs-comment">// list initialization, *C++11* feature</span>
+<span class="hljs-keyword">int</span> a(<span class="hljs-number">0</span>);
+
+<span class="hljs-keyword">double</span> salePrice = applyDiscount(price, discount); <span class="hljs-comment">// okay, initialize with arbitrary complicated expressions</span>
+
+<span class="hljs-keyword">long</span> <span class="hljs-keyword">double</span> ld = <span class="hljs-number">3.14159265</span>;
+<span class="hljs-keyword">int</span> m{ld}, n = {ld}; <span class="hljs-comment">// compiler error.</span>
+<span class="hljs-keyword">int</span> p(ld), q = ld; <span class="hljs-comment">// okay but truncated value</span></code></pre>
+
+<p>All of above are valid ways to define an <code>int</code> variable named <code>a</code>. When used with variables of built-in type, the compiler will not allow list initialize if the initializer may lead to the loss of information.</p>
+
+<p><strong>Default initialization</strong> (variables defined without an initializer)</p>
+
+<table>
+<thead>
+<tr>
+  <th>Where Variables Are Defined</th>
+  <th></th>
+  <th>Default Value</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>out of any function body</td>
+  <td></td>
+  <td>zero</td>
+</tr>
+<tr>
+  <td>inside a function</td>
+  <td>built-in type</td>
+  <td>undefined - will cause undetermined run-time problem (TODO: one exception on p. 205)</td>
+</tr>
+<tr>
+  <td></td>
+  <td>non built-in type</td>
+  <td>determined by the class (class may require an initialization, checked by compiler)</td>
+</tr>
+</tbody></table>
+
+
+<h4 id="222-variable-declarations-and-definitions">2.2.2 Variable Declarations and Definitions</h4>
+
+<p>A variable declaration specifies the type and name of a variable. A declaration makes a name known to the program. A file that wants to use a name defined elsewhere includes a declaration for that name. </p>
+
+<p>A variable definition is a declaration, and it also allocates storage and may provide the variable with an initial value. A definition creates the associated entity.</p>
+
+<p>Variables must be defined once but can be declared many times. To use the same variable in multiple files, we must define that variable in exactly one file. Other files that use that variable must declare that variable.</p>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">extern</span> <span class="hljs-keyword">int</span> i;   <span class="hljs-comment">// decalres but does not define i</span>
+<span class="hljs-keyword">int</span> j;          <span class="hljs-comment">// declares and defines j</span>
+
+<span class="hljs-keyword">extern</span> <span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.14</span>  <span class="hljs-comment">// definition, this overrides "extern"</span></code></pre>
+
+<h4 id="223-identifiers">2.2.3 Identifiers</h4>
+
+<ul>
+<li>Must begin with either a letter or an underscore</li>
+<li>Cannot use reversed keywords</li>
+<li>Cannot contain two consecutive underscores</li>
+<li>Cannot begin with an underscore followed immediately by an upper-case letter</li>
+<li>Identifiers defined outside a function may not begin with an underscore</li>
+</ul>
+
+<h4 id="224-scope-of-a-name">2.2.4 Scope of a Name</h4>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> reused = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">int</span> main()
+{
+    <span class="hljs-keyword">int</span> unique = <span class="hljs-number">0</span>;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; reused &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; unique &lt;&lt; <span class="hljs-built_in">std</span>::endl;    <span class="hljs-comment">// print 42 0</span>
+    <span class="hljs-keyword">int</span> reused = <span class="hljs-number">0</span>;
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; reused &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; unique &lt;&lt; <span class="hljs-built_in">std</span>::endl;    <span class="hljs-comment">// print 0 0</span>
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; ::reused &lt;&lt; <span class="hljs-string">" "</span> &lt;&lt; unique &lt;&lt; <span class="hljs-built_in">std</span>::endl;  <span class="hljs-comment">// print 42 0</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+}</code></pre>
+
+<p>Note the scope operator in the third cout statement. The global scope has no name, thus, ::reused fetches the name from the global scope.</p>
+
+<h3 id="23-compound-types">2.3 Compound Types</h3>
+
+<h4 id="231-references-lvalue-references">2.3.1 References (lvalue references)</h4>
+
+<ul>
+<li>A reference is not a object. Instead, it is another name for an already existing object. </li>
+<li>A reference may be only bound to an object, not to a literal or an expression or another reference.</li>
+<li>Reference cannot be re-bound, it must be initialized and remains bound to its initial object. </li>
+</ul>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> i = <span class="hljs-number">1024</span>;
+<span class="hljs-keyword">int</span> &amp;r = i;     <span class="hljs-comment">// r is a reference bound to i</span>
+
+<span class="hljs-keyword">int</span> &amp;r1 = <span class="hljs-number">1024</span>; <span class="hljs-comment">// error: initializer must be an object</span>
+<span class="hljs-keyword">double</span> d = <span class="hljs-number">3.14</span>;
+<span class="hljs-keyword">int</span> &amp;r2 = d;    <span class="hljs-comment">// error: initializer must be an int object</span></code></pre>
+
+<h4 id="232-pointers">2.3.2 Pointers</h4>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> *a, *b;     <span class="hljs-comment">// the * in declarator must be repeated for each pointer variable</span>
+<span class="hljs-keyword">int</span> ival = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">int</span> *p = &amp;ival; <span class="hljs-comment">// &amp; is an address-of operator in an expression</span>
+<span class="hljs-keyword">int</span> *p2 = p;
+<span class="hljs-built_in">cout</span> &lt;&lt; *p;     <span class="hljs-comment">// * is a dereference operator in an expression</span>
+*p = <span class="hljs-number">0</span>;
+<span class="hljs-built_in">cout</span> &lt;&lt; *p;     <span class="hljs-comment">// prints 0</span></code></pre>
+
+<ul>
+<li>A pointer is an object in its own right</li>
+<li>May not define a pointer to a reference as a reference is not an object</li>
+<li>The type of the pointer and the object to which it points must match except (TODO p.62, 601</li>
+<li>void* pointer is a special pointer type that can hold address of any object</li>
+</ul>
+
+<p>A pointer can have value of:</p>
+
+<ul>
+<li>the location of an object</li>
+<li>the location immediately pass the end of an object</li>
+<li>null pointer <br>
+<ul><li><code>int *p1 = nullptr; // nullptr is a literal can be converted to any pointer type, C++11 feature</code></li>
+<li><code>int *p2 = 0;</code></li>
+<li><code>int *p3 = NULL; // need #include cstdlib</code></li>
+<li>when appears in a condition, null pointer is false, everything else is true</li></ul></li>
+<li>everything else is invalid (causing undefined behaviour) <br>
+<ul><li>Recommendation: <strong>initialize all pointers</strong> to avoid run-time problems</li></ul></li>
+</ul>
+
+<p>Given two valid pointers of the same time, == and != operators can be applied:</p>
+
+<ul>
+<li>True if both are null or they hold the same address</li>
+<li>False otherwise</li>
+</ul>
+
+<h4 id="233-understanding-compound-type-declarations">2.3.3 Understanding Compound Type Declarations</h4>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-comment">// i is an int; p is a pointer to int; r is a reference to int</span>
+<span class="hljs-keyword">int</span> i = <span class="hljs-number">1024</span>, *p = &amp;i, &amp;r = i;
+
+<span class="hljs-comment">// p1 is a pointer to int, p2 is an int</span>
+<span class="hljs-comment">// this is misleading but note * is a part of declarator and only</span>
+<span class="hljs-comment">// modifies the type of p here</span>
+<span class="hljs-keyword">int</span> * p1, p2; </code></pre>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> ival = <span class="hljs-number">1024</span>;
+<span class="hljs-keyword">int</span> *pi = &amp;ival;
+<span class="hljs-keyword">int</span> **ppi = &amp;pi;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; ival &lt;&lt; *pi &lt;&lt; **pi &lt;&lt; endl; <span class="hljs-comment">// print the 1024 three times</span></code></pre>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> i = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">int</span> *p;      <span class="hljs-comment">// p is a pointer to int</span>
+<span class="hljs-keyword">int</span> *&amp;r = p; <span class="hljs-comment">// r is a reference to the pointer p</span>
+             <span class="hljs-comment">// tips: read from right to left here</span>
+             <span class="hljs-comment">// &amp;r makes r a reference</span>
+             <span class="hljs-comment">// * &amp;r makes r is a reference of a pointer</span>
+             <span class="hljs-comment">// int *&amp;r says r is a reference refers to a pointer points to int</span>
+
+r = &amp;i;      <span class="hljs-comment">// p points to i</span>
+*r = <span class="hljs-number">0</span>;      <span class="hljs-comment">// dereferencing yields i, changes i to 0</span></code></pre>
+
+<h3 id="24-const-qualifier">2.4 const Qualifier</h3>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> bufSize = <span class="hljs-number">512</span>;</code></pre>
+
+<p><code>Const</code> quantifier makes a variable unchangeable. Since we cannot change the value of a const variable, it must be initialized. Const variable are usually replaced by their values by the compiler during the compilation. If we want to use a const variable in multiple file, you must use keyword <code>extern</code> on both of its declaration and definition.</p>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">extern</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> bufSize = fcn(); <span class="hljs-comment">// in .cpp file</span>
+<span class="hljs-keyword">extern</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> bufSize();       <span class="hljs-comment">// in .h file</span></code></pre>
+
+<h4 id="241-reference-to-const">2.4.1 Reference to const</h4>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ci = <span class="hljs-number">1024</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;r1 = ci;
+r1 = <span class="hljs-number">5</span>;         <span class="hljs-comment">// error: r1 is a reference to const</span>
+<span class="hljs-keyword">int</span> r2 = &amp;ci;   <span class="hljs-comment">// error: non-const reference to a const object</span></code></pre>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> i = <span class="hljs-number">42</span>;
+<span class="hljs-keyword">int</span> &amp;r1 = i;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;r2 = i;
+r1 = <span class="hljs-number">0</span>;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cout</span> &lt;&lt; r2; <span class="hljs-comment">// print 0</span></code></pre>
+
+<p>Reference to <code>const</code> is a reference what refers to a <code>const</code> type. A reference to <code>const</code> cannot be used to change the object to which the reference is bound. Note that whether a reference refers to a const or non-const type affects what we can do with that reference, not whether we can later the binding of the reference it self.</p>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">double</span> dval = <span class="hljs-number">3.14</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;ri = dval; <span class="hljs-comment">// ri will bind to an temporary int object with value of 3</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> &amp;ri = dval * <span class="hljs-number">2</span>;  <span class="hljs-comment">// binding reference to an expression</span></code></pre>
+
+<p>Although we usually only allow binding references to objects with matching types, references to const can bind to nonconst objects, literals or expressions, if the literal or expression can be converted to the type of the reference to const. </p>
+
+<h4 id="242-pointers-and-const">2.4.2 Pointers and const</h4>
+
+<table>
+<thead>
+<tr>
+  <th>Pointers to const</th>
+  <th><code>const double *cptr = &amp;pi;</code></th>
+  <th></th>
+</tr>
+</thead>
+<tbody><tr>
+  <td></td>
+  <td>points to objects</td>
+  <td>points to const objects</td>
+</tr>
+<tr>
+  <td>pointer</td>
+  <td>allowed</td>
+  <td>not allowed</td>
+</tr>
+<tr>
+  <td>pointer to const</td>
+  <td>allowed, but cannot change the object through cptr</td>
+  <td>allowed</td>
+</tr>
+</tbody></table>
+
+
+<p><strong>const Pointer</strong>  <br>
+const Pointers are <code>const</code> objects. a const pointer must be initialized and its value cannot be changed after initialization. The object to which the <code>const</code> pointer points can be changed through that pointer.</p>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> errNumb = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">int</span> *<span class="hljs-keyword">const</span> curErr = &amp;errNumb; <span class="hljs-comment">// const pointer always points to errNumb</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> pi = <span class="hljs-number">3.14</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">double</span> *<span class="hljs-keyword">const</span> pip = &amp;pi; <span class="hljs-comment">// const pointer to a const points to pi</span></code></pre>
+
+<h4 id="243-top-level-const">2.4.3 Top-Level const</h4>
+
+<p>Top-level <code>const</code> can appear in any object type. It means the object itself is <code>const</code>. <br>
+Low-level <code>const</code> appears in compound types. References to const and pointer to const are low-level <code>const</code>.</p>
+
+<p>When we copy an object, top-level consts are ignored whereas low-level are not.</p>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ci = <span class="hljs-number">42</span>;   <span class="hljs-comment">// top-level const</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *p2 = &amp;ci; <span class="hljs-comment">//low-level const</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *<span class="hljs-keyword">const</span> p3 = p2; <span class="hljs-comment">// top-level and low-level const</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> &amp;r = ci;   <span class="hljs-comment">// low-level const</span>
+
+i = ci; <span class="hljs-comment">// okay: top-level consts are ignored</span>
+<span class="hljs-keyword">int</span> *p = p2 <span class="hljs-comment">// error: p is not a low-level const</span></code></pre>
+
+<h4 id="244-constexpr-and-constant-expressions">2.4.4 <code>constexpr</code> and Constant Expressions</h4>
+
+<p>A constant expression is an expression whose value cannot change and that can be <em>evaluated at compile time</em>. A literal is a constant expression. A const object that is initialized from a constant expression is a constant expression.</p>
+
+<p>constexpr Variables <em>(C++11 feature)</em></p>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">int</span> mf = <span class="hljs-number">20</span>;
+<span class="hljs-keyword">constexpr</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> *p = &amp;mf; <span class="hljs-comment">// constexpr pointer points to a const int</span></code></pre>
+
+<p>Variables declared as <code>constexpr</code> are implicitly <code>const</code> (top-level) and must be initialized by constant expressions. This will be checked by the compiler. C++11 lets us define certain functions as <code>constexpr</code> if it is simple enough to be evaluated at compile time. It is suggested to use <code>constexpr</code> when you intend to use constant expression.</p>
+
+<p>Be careful that we can only points a <code>constexpr</code> pointer to nullptr or a fixed address since the dynamic address cannot be carried out by compiler. The address of an object defined outside of any function is a constant expression. (TODO: there is another type on p.205)</p>
+
+<h3 id="25-dealing-with-types">2.5 Dealing with Types</h3>
+
+<h4 id="251-type-aliases">2.5.1 Type Aliases</h4>
+
+<p>A type alias is a name that is a synonym for anothe type. We are using type alias trying to simplify code or  emphasize the purpose for which a type is used.</p>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">typedef</span> <span class="hljs-keyword">double</span> wages;   <span class="hljs-comment">// wages is a synonym for double</span>
+<span class="hljs-keyword">typedef</span> wages base, *p; <span class="hljs-comment">// base is a synonym for double, p for double*</span>
+
+<span class="hljs-keyword">using</span> SI = Sales_item;  <span class="hljs-comment">// SI is a synonym for Sales_item, C++11 feature</span>
+SI item; <span class="hljs-comment">// declare a Sales_item object</span>
+
+<span class="hljs-keyword">typedef</span> <span class="hljs-keyword">char</span> *pstring;
+<span class="hljs-keyword">const</span> pstring sctr = <span class="hljs-number">0</span>; <span class="hljs-comment">// sctr is a constant pointer(top-level) to char</span>
+                        <span class="hljs-comment">// const char *cstr = 0; wrong interpretation</span>
+<span class="hljs-keyword">const</span> pstring *ps;      <span class="hljs-comment">// ps is a pointer to const pointer to char</span></code></pre>
+
+<h4 id="252-the-auto-type-specifier-c11-feature">2.5.2 The <code>auto</code> Type Specifier <em>(C++11 feature)</em></h4>
+
+<p><code>auto</code> tells the compiler to deduce the type from the initializer. By implication, a variable that uses auto as its type specifier must have an initializer. One declaration can involve a single base type, note that initializers for variables in declaration must have types that are consistent.</p>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">auto</span> i = <span class="hljs-number">0</span>, *p = &amp;i, &amp;r = i; <span class="hljs-comment">// i is int, p is int*, r is a reference</span>
+<span class="hljs-keyword">auto</span> a = r; <span class="hljs-comment">// a is an int (deducting from reference)</span></code></pre>
+
+<p><code>auto</code> specifier ignores top-level const and keep low-level const.</p>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ci = i;
+<span class="hljs-keyword">auto</span> b = ci;  <span class="hljs-comment">// b is int</span>
+<span class="hljs-keyword">auto</span> e = &amp;ci; <span class="hljs-comment">// e is const int* (&amp; of a const object is low-level const)</span>
+<span class="hljs-keyword">const</span> <span class="hljs-keyword">auto</span> f = ci; <span class="hljs-comment">// f is const int</span>
+<span class="hljs-keyword">auto</span> &amp;g = ci; <span class="hljs-comment">// g is a const int&amp;</span>
+              <span class="hljs-comment">// top-level const is not ignored for reference</span>
+<span class="hljs-keyword">auto</span> &amp;n = i, *p2 = &amp;ci; <span class="hljs-comment">// error: int and const int are not consistent</span></code></pre>
+
+<h4 id="253-the-decltype-type-specifier-c11-feature">2.5.3 The decltype Type Specifier <em>(C++11 feature)</em></h4>
+
+<p><code>decltype</code> returns the type of its operand. The compiler analyses the type of its operand without evaluating.</p>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">decltype</span>(f()) sum = x; <span class="hljs-comment">// sum has whatever type f returns</span></code></pre>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">const</span> <span class="hljs-keyword">int</span> ci = <span class="hljs-number">0</span>, &amp;cj = ci;
+<span class="hljs-keyword">decltype</span>(ci) x = <span class="hljs-number">0</span>; <span class="hljs-comment">// x is a const int, top-level const isn't ignored</span>
+<span class="hljs-keyword">decltype</span>(cj) y = x; <span class="hljs-comment">// y has type const int&amp;</span>
+                    <span class="hljs-comment">// note that cj is treated as a reference here</span>
+<span class="hljs-keyword">decltype</span>(cj + <span class="hljs-number">0</span>) b; <span class="hljs-comment">// b is a const int</span></code></pre>
+
+<p><code>decltype</code> returns a reference type for <em>expression</em> that yield objects that can stand on the left-hand side of the assignment. Variables are not expressions.</p>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">int</span> i = <span class="hljs-number">42</span>, *p = &amp;i;
+<span class="hljs-keyword">decltype</span>(*p) c;  <span class="hljs-comment">// error: c is int&amp; and must be initialized</span>
+<span class="hljs-keyword">decltype</span>((i)) d; <span class="hljs-comment">// error: d is int&amp; and must be initialized</span>
+                 <span class="hljs-comment">// it treats (i) as an expression</span>
+                 <span class="hljs-comment">// decltype((variable)) is always a reference type</span></code></pre>
+
+<h3 id="26-defining-our-own-data-structures">2.6 Defining Our Own Data Structures</h3>
+
+<h4 id="261-defining-the-salesdata-type">2.6.1 Defining the Sales_data Type</h4>
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">struct</span> Sales_data {
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> bookNo;
+    <span class="hljs-keyword">unsigned</span> units_sold = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">double</span> revenue = <span class="hljs-number">0.0</span>;
+};
+
+<span class="hljs-keyword">struct</span> Sales_data { <span class="hljs-comment">/*...*/</span> } accum, trans *salesptr;
+<span class="hljs-comment">// equivalent but better way to define these objects:</span>
+<span class="hljs-keyword">struct</span> Sales_data { <span class="hljs-comment">/*...*/</span> };
+Sales_data accum, trans *salesptr;</code></pre>
+
+<p>The class body defines the member of the class. Each Sales_data object will have these three data members. Data members that are not initialized in-class are default initialized. Initializing with parenthesis are not allowed for in-class initializer.</p>
+
+<h4 id="262-using-salesdata-class">2.6.2 Using Sales_data Class</h4>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-keyword">double</span> price = <span class="hljs-number">0</span>;
+Sales_data data;
+<span class="hljs-built_in">std</span>::<span class="hljs-built_in">cin</span> &gt;&gt; data.bookNo &gt;&gt; data.unit_sold &gt;&gt; price;</code></pre>
+
+<h4 id="263-writing-our-own-header-files">2.6.3 Writing Our Own Header Files</h4>
+
+<p>Class are usually defined in header files in order to ensure that the class definition is the same in each file. Typically, the name of header file is the same as the name of the class (e.g. Sales_data.h). </p>
+
+<p>Sometime a header may be included multiple times. For example, <code>#include &lt;string&gt;</code> appears in both Sales_data.h and main.cc files, the <code>string</code> header is included once by main.cc and once by side effect of including Sales_data.h.</p>
+
+<p>In C++, when a preprocessor sees a #include, it replaces the #include with the contents of the specified header. We can use preprocessor to define header guards. <code>#define</code> directive defines a preprocessor variable. <code>#ifdef</code> is true if the variable is defined, and <code>#ifndef</code> is true if the variable has not been defined. If the test is true, the following will be executed until <code>#endif</code>.</p>
+
+
+
+<pre class="prettyprint"><code class="language-cpp hljs "><span class="hljs-preprocessor">#ifndef SALES_DATA_H</span>
+<span class="hljs-preprocessor">#define DALES_DATA_H</span>
+
+<span class="hljs-preprocessor">#include &lt;string&gt;</span>
+
+<span class="hljs-keyword">struct</span> Sales_data {
+    <span class="hljs-built_in">std</span>::<span class="hljs-built_in">string</span> bookNo;
+    <span class="hljs-keyword">unsigned</span> units_sold = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">double</span> revenue = <span class="hljs-number">0.0</span>;
+};
+<span class="hljs-preprocessor">#endif</span></code></pre>
+
+<p>The test will succeed once when the Sales_data.h is first included. Note that preprocessor variable must be unique throughout the program. It is suggested to always write header guard in header files.</p>
+
+<blockquote>
+  <p>End of Chapter 2 <br>
+  Written with <a href="https://stackedit.io/">StackEdit</a>.</p>
+</blockquote></div>
+
+</article> <!-- end #post__content -->
+
+<div id="post__share">
+  <a id="icon-twitter" class="fontello" href="https://twitter.com/intent/tweet?url=http://ecsys.github.io/cpp-primer-notes-ch2.html&text=C++ Primer(5th Edition) Notes - Chapter 2" target="_blank"></a>
+  <a id="icon-cc" class="fontello" href="http://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank"></a>
+  <a id="icon-weibo" class="fontello" href="http://v.t.sina.com.cn/share/share.php?url=http://ecsys.github.io/cpp-primer-notes-ch2.html&title=C++ Primer(5th Edition) Notes - Chapter 2" target="_blank"></a>
+</div> <!-- end #post__share -->
+<div id="disqus_thread" name="ecsys">
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  <a href="http://disqus.com" class="dsq-brlink" target="_blank">Loading Disqus comments...</a>
+</div>
+
+
+        <p id="copyright">Powered by <a href="http://jekyllrb.com" target="_blank">Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Theme <a href="https://github.com/P233/3-Jekyll" target="_blank">3-Jekyll</a>&nbsp;&nbsp;|&nbsp;&nbsp;Hosted on <a href="https://pages.github.com" target="_blank">Github</a></p>
+      </div> <!-- end #pjax -->
+
+      <div id="post__toc-trigger">
+        <div id="post__toc">
+          <span id="post__toc-title">Table of Contents</span>
+          <ul id="post__toc-ul"></ul>
+        </div>
+      </div>
+    </div> <!-- end #post -->
+
+    <button id="js-fullscreen"><span id="icon-arrow" class="fontello"></span></button>
+
+<script src="/assets/js/jquery.js"></script>
+<script src="/assets/js/jquery.pjax.js"></script>
+<script src="/assets/js/nprogress.js"></script>
+<script src="/assets/js/script.js"></script>
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', '', '');
+  ga('send', 'pageview');
+</script>
+  </body>
+</html>
