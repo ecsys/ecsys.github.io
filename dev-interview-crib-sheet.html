@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="Ecsys" />
+    <meta name="generator" content="Pelican (VoidyBootstrap theme)" />
+
+    <title>Dev Interview Crib Sheet - Ecsys's blog</title>
+
+   
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+              integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+              crossorigin="anonymous" />
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous" />
+
+
+      <link rel="stylesheet" href="/theme/css/pygment.css" />
+      <link rel="stylesheet" href="/theme/css/voidybootstrap.css" />
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js" integrity="sha384-FFgGfda92tXC8nCNOxrCQ3R8x1TNkMFqDZVQdDaaJiiVbjkPBXIJBx0o7ETjy8Bh" crossorigin="anonymous"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js" integrity="sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
+    <![endif]-->
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+  </head>
+
+  <body>
+   
+    <nav class="navbar navbar-default">
+      <div class="container">
+	   <div class="navbar-header">
+		<button type="button" class="navbar-toggle" 
+				data-toggle="collapse" data-target="#main-navbar-collapse">
+		  <span class="sr-only">Toggle navigation</span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		  <span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="/" rel="home">
+          <i class="fa fa-home fa-fw fa-lg"> </i> </a>
+       </div>
+
+      <div class="collapse navbar-collapse" id="main-navbar-collapse">
+        <ul class="nav navbar-nav">
+              <li>
+                <a href="/pages/about-me.html">About me</a>
+              </li>
+              <li>
+                <a href="/pages/bu-yao-dian.html">不要点</a>
+              </li>
+            <li class="divider"></li>
+            <li class="">
+              <a href="/archives.html">Archives</a>
+            </li>
+          <li class="divider"></li>
+        </ul> <!-- /nav -->
+      </div> <!-- /navbar-collapse -->
+	  </div> <!-- /container -->
+    </nav> <!-- /navbar -->
+
+	<div class="jumbotron" id="overview">
+	  <div class="container">
+		<h1><a href="/">Ecsys's blog</a></h1>
+	  </div>
+	</div>
+
+    <div class="container" id="main-container">
+      <div class="row">
+        <div class="col-md-9" id="content">
+<article itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
+  <header class="article-header">
+<abbr class="article-header-date">
+  Fri 20 November 2015
+</abbr> <h1>
+  <a href="/dev-interview-crib-sheet.html" rel="bookmark"
+     title="Permalink to Dev Interview Crib Sheet">
+    Dev Interview Crib Sheet
+  </a>
+</h1><div class="article-header-info">
+  <p>
+      Posted by <a href="/author/ecsys.html">Ecsys</a>
+    in 
+    <a href="/category/tech.html">
+      Tech</a>
+    &nbsp;&nbsp;
+  </p>
+</div> <!-- /.article-header-info -->  </header>
+  <div class="content-body" itemprop="text articleBody">
+	<h2>Sorting Algorithms</h2>
+<table>
+<thead>
+<tr>
+<th>Algorithm</th>
+<th>Average Case</th>
+<th>Best Case</th>
+<th>Worst Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bubble Sort</td>
+<td>n^2</td>
+<td>n</td>
+<td>n^2</td>
+</tr>
+<tr>
+<td>Insertion Sort</td>
+<td>n^2</td>
+<td>n</td>
+<td>n^2</td>
+</tr>
+<tr>
+<td>Selection Sort</td>
+<td>n^2</td>
+<td>n^2</td>
+<td>n^2</td>
+</tr>
+<tr>
+<td>Merge Sort</td>
+<td>n*logn</td>
+<td>n*logn</td>
+<td>n*logn</td>
+</tr>
+<tr>
+<td>Quick Sort</td>
+<td>n*logn</td>
+<td>n*logn</td>
+<td>n^2</td>
+</tr>
+</tbody>
+</table>
+<p>Implementation of MergeSort - Java</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">mergeSort</span><span class="o">(</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span><span class="o">){</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+
+    <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">left</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+    <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">right</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+
+    <span class="kt">int</span> <span class="n">middle</span> <span class="o">=</span> <span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">/</span> <span class="mi">2</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">middle</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="n">left</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+    <span class="o">}</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">middle</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">list</span><span class="o">.</span><span class="na">size</span><span class="o">();</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="n">right</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+    <span class="o">}</span>
+
+    <span class="n">left</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="o">(</span><span class="n">left</span><span class="o">);</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="n">mergeSort</span><span class="o">(</span><span class="n">right</span><span class="o">);</span>
+
+    <span class="k">return</span> <span class="n">merge</span><span class="o">(</span><span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">merge</span><span class="o">(</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">left</span><span class="o">,</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">right</span><span class="o">){</span>
+    <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;();</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">left</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">right</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">left</span><span class="o">.</span><span class="na">getFirst</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="o">.</span><span class="na">getFirst</span><span class="o">()){</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">left</span><span class="o">.</span><span class="na">getFirst</span><span class="o">());</span>
+            <span class="n">left</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">right</span><span class="o">.</span><span class="na">getFirst</span><span class="o">());</span>
+            <span class="n">right</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">left</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
+        <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">left</span><span class="o">.</span><span class="na">getFirst</span><span class="o">());</span>
+        <span class="n">left</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">right</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
+        <span class="n">result</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">right</span><span class="o">.</span><span class="na">getFirst</span><span class="o">());</span>
+        <span class="n">right</span><span class="o">.</span><span class="na">removeFirst</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p>Implementation of QuickSort - Java</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="nf">QuickSort</span><span class="o">(</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">A</span><span class="o">,</span> <span class="kt">int</span> <span class="n">low</span><span class="o">,</span> <span class="kt">int</span> <span class="n">hi</span><span class="o">){</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">hi</span> <span class="o">&gt;</span> <span class="n">low</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">pivotLoc</span> <span class="o">=</span> <span class="n">partition</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">low</span><span class="o">,</span> <span class="n">hi</span><span class="o">);</span>
+        <span class="n">QuickSort</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">low</span><span class="o">,</span> <span class="n">pivotLoc</span> <span class="o">-</span> <span class="mi">1</span><span class="o">);</span>
+        <span class="n">QuickSort</span><span class="o">(</span><span class="n">A</span><span class="o">,</span> <span class="n">pivotLoc</span> <span class="o">+</span> <span class="mi">1</span><span class="o">,</span> <span class="n">hi</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">A</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">partition</span><span class="o">(</span><span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">A</span><span class="o">,</span> <span class="kt">int</span> <span class="n">low</span><span class="o">,</span> <span class="kt">int</span> <span class="n">hi</span><span class="o">){</span>
+    <span class="kt">int</span> <span class="n">pivot</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">hi</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">low</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">low</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hi</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">A</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">cur</span><span class="o">);</span>
+            <span class="n">A</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">cur</span><span class="o">,</span> <span class="n">A</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">));</span>
+            <span class="n">A</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">i</span><span class="o">,</span> <span class="n">temp</span><span class="o">);</span>
+            <span class="n">cur</span><span class="o">++;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">cur</span><span class="o">);</span>
+    <span class="n">A</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">cur</span><span class="o">,</span> <span class="n">pivot</span><span class="o">);</span>
+    <span class="n">A</span><span class="o">.</span><span class="na">set</span><span class="o">(</span><span class="n">hi</span><span class="o">,</span> <span class="n">temp</span><span class="o">);</span>
+    <span class="k">return</span> <span class="n">cur</span><span class="o">;</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<hr />
+<h2>Tree Structure</h2>
+<h3>Binary Search Tree</h3>
+<p>TODO:
+Definition and basic operations, e.g. insertion, deletion, searching...</p>
+<p><strong>Red-Black Tree</strong>(Self-balancing binary search tree)</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Average Case</th>
+<th>Worst Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Space</td>
+<td>O(n)</td>
+<td>O(n)</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>Insert</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+<tr>
+<td>Delete</td>
+<td>O(log n)</td>
+<td>O(log n)</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Property<ol>
+<li>Leaves have to be NIL</li>
+<li>Root and leaves are all black</li>
+<li>Every red node must have to black nodes</li>
+<li>Every path from a given node to any of its descendant leaves must have the same number of black nodes</li>
+</ol>
+</li>
+</ul>
+<p>Note: Property 3 and 4 make sure that max_height&lt;2*min_height, thus roughly balanced</p>
+<h3>Tree Traversal</h3>
+<h4><strong>BFS</strong></h4>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">BFS</span><span class="o">(</span><span class="n">Node</span> <span class="n">r</span><span class="o">){</span>
+    <span class="n">Queue</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedList</span><span class="o">&lt;</span><span class="n">Node</span><span class="o">&gt;();</span>
+    <span class="n">Node</span> <span class="n">cur</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">r</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">temp</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
+    <span class="k">while</span> <span class="o">(!</span><span class="n">temp</span><span class="o">.</span><span class="na">isEmpty</span><span class="o">()){</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="o">(</span><span class="n">Node</span><span class="o">)</span><span class="n">temp</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">cur</span><span class="o">.</span><span class="na">left</span><span class="o">!=</span><span class="kc">null</span><span class="o">)</span> <span class="n">temp</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">cur</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">cur</span><span class="o">.</span><span class="na">right</span><span class="o">!=</span><span class="kc">null</span><span class="o">)</span> <span class="n">temp</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">cur</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">cur</span><span class="o">.</span><span class="na">value</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<h4><strong>DFS</strong></h4>
+<p>Pre-order</p>
+<div class="highlight"><pre><span></span>preorder(node)
+    if node == null then return
+    visit(node)
+    preorder(node.left) 
+    preorder(node.right)
+</pre></div>
+
+
+<p><img alt="preorder" src="http://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Sorted_binary_tree_preorder.svg/220px-Sorted_binary_tree_preorder.svg.png" /></p>
+<p>Visit order: F-B-A-D-C-E-G-I-H</p>
+<p>In-order</p>
+<div class="highlight"><pre><span></span>inorder(node)
+    if node == null then return
+    inorder(node.left)
+    visit(node)
+    inorder(node.right)
+</pre></div>
+
+
+<p><img alt="inorder" src="http://upload.wikimedia.org/wikipedia/commons/thumb/7/77/Sorted_binary_tree_inorder.svg/220px-Sorted_binary_tree_inorder.svg.png" /></p>
+<p>Visit order: A-B-C-D-E-F-G-H-I</p>
+<p>Post-order</p>
+<div class="highlight"><pre><span></span>postorder(node)
+    if node == null then return
+    postorder(node.left)
+    postorder(node.right)
+    visit(node)
+</pre></div>
+
+
+<p><img alt="postorder" src="http://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Sorted_binary_tree_postorder.svg/220px-Sorted_binary_tree_postorder.svg.png" /></p>
+<p>Visit order: A-C-E-D-B-H-I-G-F</p>
+<p>Code example of pre-order:</p>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">DFS</span><span class="o">(</span><span class="n">Node</span> <span class="n">r</span><span class="o">){</span>
+    <span class="n">r</span><span class="o">.</span><span class="na">visited</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="na">value</span> <span class="o">+</span> <span class="s">&quot; &quot;</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="na">left</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">DFS</span><span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="na">left</span><span class="o">);</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">DFS</span><span class="o">(</span><span class="n">r</span><span class="o">.</span><span class="na">right</span><span class="o">);</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<h3>Other Tree Algorithms</h3>
+<p><strong>Binary Tree Reverse</strong></p>
+<ul>
+<li>Solution 1 (without recursion)<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>Stact reverse = new Stack()
+reverse.push(root)
+while(!stack.isEmpty()){
+    TreeNode cur = stack.pop()
+    switch the left and right child of cur
+    if(cur.left!=null)
+        reverse.push(cur.left)
+    if(cur.right!=null)
+        reverse.push(cur.right)
+}
+</pre></div>
+
+
+<ul>
+<li>Solution 2 (Python)<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="n">reverse</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+    <span class="c1"># when the reverse method is first called, the default value of root is this Node</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+        <span class="n">newLeft</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">addLeft</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">newLeft</span><span class="p">)</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+        <span class="n">newRight</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">addRight</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">reverse</span><span class="p">(</span><span class="n">newRight</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">root</span>
+</pre></div>
+
+
+<p><strong>Minimum Spanning Tree(MST)</strong></p>
+<ul>
+<li>Given an undirected weighted graph G = (V,E)</li>
+<li>Want to find a subset of E with the minimum total weight that connects all the nodes into a tree</li>
+<li><strong>Kruskal's Algorithm</strong> (easy to code with O(e*log(e)))<ul>
+<li>Idea<ul>
+<li>The edge e* with the smallest weight has to be in the MST!</li>
+<li>After an edge is chosen, the two nodes at the ends can be merged into one set</li>
+</ul>
+</li>
+<li>Pseudo code<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>making each node a set
+sort the edges in increasing order of weight
+repeat until there is only one set left
+    take minimum weight edge e*
+    if e* connects two sets
+        connect them and merge the sets
+        add e* to result
+    otherwise, ignore e*
+</pre></div>
+
+
+<ul>
+<li><strong>Prim's Algorithm</strong> (O(|E|+|V|log|V|) with Fibonacci heap and adjacency list)<ul>
+<li>Idea<ul>
+<li>maintain a set S that starts out with a single node s</li>
+<li>find the smallest weighted edge e* = (u, v) that connects u ∈ S and v !∈ S</li>
+<li>add e* to the MST, add v to S</li>
+<li>repeat until S = V</li>
+</ul>
+</li>
+<li>Pseudo code<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>initialize S to {s}, D_v to cost(s, v) for every v
+repeat until S = V
+    find v !∈ S with smallest D_v (use a priority queue)
+    add v to S, add D_v to the total weight of the MST
+    for each edge(v ,w)
+        update D_w to min(D_w, cost(v, w))
+</pre></div>
+
+
+<hr />
+<h2>Graphs</h2>
+<h3>Definitions</h3>
+<ol>
+<li>Connected graph: there is a path between every pair of nodes (include 0 or 1 node)</li>
+<li>Bipartite graph: nodes can be separated into two groups S and T such that edges exist between S and T only</li>
+<li>Directed acyclic graph: a directed graph with no directed cycles</li>
+</ol>
+<h3>Representation of Graphs</h3>
+<table>
+    <tr>
+        <th></th>
+        <th>Idea</th>
+        <th>Pros</th>
+        <th>Cons</th>
+    </tr>
+    <tr>
+        <td>Adjacent Matrix</td>
+        <td>Store information is a |V|x|V| 2D matrix.<br>
+            If there is an edge, put 1; otherwise, put 0.</td>
+        <td>
+            <li>Easy implementation</li>
+            <li>Delete an edge: O(1)</li>
+            <li>Query an edge: O(1)</li>
+        </td>
+        <td>
+            <li>Insert an vertex: O(v^2)</li>
+            <li>Memory space: O(v^2)</li>
+        </td>
+    </tr>
+    <tr>
+        <td>Adjacency list</td>
+        <td>Have an array of LinkedLists.<br>
+            An entry in array[i] means that node is adjacent to node i.<br>
+            <img src="http://faculty.cs.niu.edu/~freedman/340/340notes/gifImages/340graph6.gif" alt="Adjacency list" style="width:200px;height:150px;">
+        </td>
+        <td>
+            <li>space(V+E)</li>
+            <li>easy to add a vertex</li>
+        </td>
+        <td>
+            <li>query an edge costs O(V)</li>
+            <li>harder implementation</li>
+        </td>
+    </tr>
+    <tr>
+        <td>Object and pointers</td>
+        <td>
+            Similar to adjacency list but information of edges(pointers) is stored in the objects of nodes.
+        </td>
+        <td></td>
+        <td></td>
+    </tr>
+
+</table>
+
+<h3>Graph Algorithms</h3>
+<p><strong>Topological sort</strong></p>
+<ul>
+<li>Define problem<ul>
+<li>input: a DAG, G = (V, E)</li>
+<li>output: an ordering of nodes such that for each edge u-&gt;v, u comes before v<ul>
+<li>the topological ordering is not unique</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>O(n^2 + m) solution<ul>
+<li>any node without an incoming edge can be the first element</li>
+<li>after having the first node, removing outgoing edges from it, repeat</li>
+</ul>
+</li>
+<li>O(n + m) solution<ul>
+<li>per-compute the number of incoming edges deg(v) for each node v</li>
+<li>put all nodes with 0 deg() into a queue Q</li>
+<li>repeat until Q becomes empty<ul>
+<li>take v from Q</li>
+<li>for each edge v-&gt;u<ul>
+<li>decrement deg(u)</li>
+<li>if deg(u)==0, push to Q</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Eulerian Circuit</strong></p>
+<ul>
+<li>
+<p>Define problem</p>
+<ul>
+<li>Given an undirected graph G, we want to find a sequence of nodes that visits every edge exactly once and comes back to the starting point</li>
+<li>Note: G has to be connected and each vertex has to have an even degree</li>
+</ul>
+</li>
+<li>
+<p>Solving idea</p>
+<ul>
+<li>pick any node G and walk randomly</li>
+<li>when you come back to a visited node or get stuck, you must have a cycle<ul>
+<li>remove edges in the cycle and process in each connected component</li>
+<li>glue the cycles together to finish</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Shortest path algorithm</strong></p>
+<ul>
+<li><strong>Dijkstra</strong> (O(E+V logV))<ul>
+<li>Idea<ul>
+<li>Assign distance of 0 to the initial node and infinity to other nodes</li>
+<li>Mark initial node as current node and other nodes as unvisited nodes</li>
+<li>For Node.cur consider all unvisited neighbours<ul>
+<li>calculate tentative distance</li>
+<li>ensure for all its neighbours has the smallest tentative distance</li>
+</ul>
+</li>
+<li>Mark the current node visited</li>
+<li>If the destination is visited, stop</li>
+<li>Mark the node with smallest tentative distance as cur and loop</li>
+</ul>
+</li>
+<li>Pseduo code</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>function Dijkstra(Graph, source):
+    dist[source] ← 0                        // Initialization
+    for each vertex v in Graph:           
+        if v ≠ source
+            dist[v] ← infinity              // Unknown distance from source to v
+            prev[v] ← undefined             // Predecessor of v
+        end if
+        Q.add_with_priority(v, dist[v])
+    end for 
+
+    while Q is not empty:                   // The main loop
+        u ← Q.extract_min()                 // Remove and return best vertex
+        for each neighbor v of u:
+            alt = dist[u] + length(u, v) 
+            if alt &lt; dist[v]
+                dist[v] ← alt
+                prev[v] ← u
+                Q.decrease_priority(v, alt)
+            end if
+        end for
+    end while
+    return prev[]
+</pre></div>
+
+
+<ul>
+<li><strong>A* Search</strong> O(b^d) for both time and space (b:breadth d:depth)<ul>
+<li>Idea<ul>
+<li>Let g(x) represent past cost</li>
+<li>h(x) represents heuristic estimate</li>
+<li>f(x) = g(x) + h(x)</li>
+<li>Optional addition constraint: h(x) &lt;= d(x,y) + h(y)</li>
+<li>Starting with the initial node</li>
+<li>Put starting nodes into a priority queue</li>
+<li>The lower the f(x), the higher the priority, remove the lowest f(x) from the queue</li>
+<li>Update f(x), g(x) and h(x) of the neighbours of the popped node, push updated info to the queue</li>
+<li>Loop the algorithm until we pop the goal node from the queue</li>
+</ul>
+</li>
+<li>Pseduo code</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>initialize the open list
+initialize the closed list
+put the starting node on the open list (you can leave its f at zero)
+
+while the open list is not empty
+    find the node with the least f on the open list, call it &quot;q&quot;
+    pop q off the open list
+    generate q&#39;s neighbours and set their parents to q
+    for each neighbour
+        if neighbour is the goal, stop the search
+        neighbour.g = q.g + distance between neighbour and q
+        neighbour.h = distance from goal to neighbour
+        neighbour.f = neighbour.g + neighbour.h
+
+        if a node with the same position as neighbour is in the OPEN list \
+            which has a lower f than neighbour, skip this neighbour
+        if a node with the same position as neighbour is in the CLOSED list \ 
+            which has a lower f than neighbour, skip this neighbour
+        otherwise, add the node to the open list
+    end
+    push q on the closed list
+end
+</pre></div>
+
+
+<hr />
+<h2>Dynamic Programming</h2>
+<p>Method for solving complex problems by breaking them down into simpler sub-problems.</p>
+<p><strong>1-Dimensional DP example</strong></p>
+<ul>
+<li>Define problem<ul>
+<li>Given n, find the number of different ways to write n as the sum of 1, 3, 4</li>
+<li>For n = 5, the answer is 6<ul>
+<li>5 = 1 + 1 + 1 + 1 + 1<br />
+    = 1 + 1 + 3<br />
+    = 1 + 3 + 1<br />
+    = 3 + 1 + 1<br />
+    = 1 + 4<br />
+    = 4 + 1  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Solution<ul>
+<li>Let $D_n$ be the number of ways to write n as the sum of 1, 3, 4</li>
+<li>Suppose one possible solution, n = $x_1 + x_2 + x_3 +...+ x_m$($x$ is one of 1, 3, 4)<ul>
+<li>if $x_m=1$, the rest of the terms must sum to n-1</li>
+<li>thus, the number of sums that end with $x_m=1$ is equal to $D_{n-1}$ (also think about $x_m=3, 4$)</li>
+<li>then we have $D_n = D_{n-1} + D_{n-3} + D_{n-4}$</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span>set D[0] = D[1] = D[2] = 1, D[n&lt;0] = 0, D[3] = 2
+for(i = 4; i&lt;=n; i++)
+    D[i] = D[i-1] + D[i-3] + D[i-4];
+</pre></div>
+
+
+<p><strong>2-Dimensional DP example</strong></p>
+<ul>
+<li>Define problem<ul>
+<li>given two strings x and y, find the longest common sub-sequence(LCS) and print its length</li>
+<li>x = ABCBDAB<br />
+  y = BDCABC<br />
+  answer : BCAB, (length is 4)</li>
+<li>Note: unlike substrings, subsequences are not required to occupy consecutive positions within the original sequences</li>
+</ul>
+</li>
+<li>Solution<ul>
+<li>let $D_{ij}$ be the length of the LCS of $x_1 ... x_i$ and $y_1 ... y_j$</li>
+<li>if $x_i = y_j$, they both contribute to the LCS<ul>
+<li>$D_{ij} = D_{i-1,j-1} + 1$</li>
+</ul>
+</li>
+<li>otherwise, either $x_i$ or $y_j$ does not contribute to the LCS, so one can be dropped<ul>
+<li>$D_{ij} = max(D_{i-1,j},D_{i,j-1})$</li>
+</ul>
+</li>
+<li>find and solve the base cases: $D_{i0} = D_{0j} = 0$</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">for</span><span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+<span class="k">for</span><span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="n">D</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> 
+<span class="k">for</span><span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span> 
+    <span class="k">for</span><span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span> 
+        <span class="k">if</span><span class="o">(</span><span class="n">x</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">y</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> 
+            <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> 
+        <span class="k">else</span> 
+            <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">max</span><span class="o">(</span><span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="n">j</span><span class="o">],</span> <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]);</span> 
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<hr />
+<h2>Operating System</h2>
+<h3>Processes and Threads</h3>
+<ul>
+<li>Both processes and threads have life cycles<ul>
+<li>create-&gt;ready-&gt;running-&gt;wait-&gt;suspend-&gt;close</li>
+</ul>
+</li>
+<li>Process<ul>
+<li>A process has a self-contained execution environment, e.g. memory space.</li>
+<li>A process has at least one threads</li>
+<li>A process can have multiple threads<ul>
+<li>Threads within a process share the same address space (code segment, data segment, open files, etc..)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Thread<ul>
+<li>Easier to create than process and more efficient I/O</li>
+<li>Having its own allocated registers and separate stack for procedure calls</li>
+<li>Most common usage for threads: large server applications</li>
+<li>Deadlock<ul>
+<li>T1 accesses R1<br />
+  T2 accesses R2<br />
+  T1 requires R2
+  T2 requires R1</li>
+<li>Solutions<ul>
+<li>Make resources can be accessed by only one threads at a time</li>
+<li>Set a maximum waiting time</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>Database</h2>
+<h3>Entity-Relation Model</h3>
+<p>Key: Minimum set of attributes whose values uniquely identify an entity in an entity set.<br />
+Domain: Each attribute has a domain, e.g. Integer, 20-character string, etc.</p>
+<p>IS-A Hierarchy</p>
+<ul>
+<li>subclass is a special case of its supercalss</li>
+<li>subclass has fewer entites and more properties</li>
+<li>"A is-a B", then A is the subclass and key only stores in B(superclass) since each entity in A has the key attribute in B</li>
+</ul>
+<p>Realtionship: Association among two or more entites. E.g. employee A works in a department X could have a works_in relation set contains keys from worker set and department set and have an extra attribute of starting time .</p>
+<ul>
+<li>key contraint: the condition each department is managed by only one employee is called a key constraint on Manages(relationship set).</li>
+<li>participation constraint: the condition each employee must work in a department, i.e. the participation of Employee in Work_in is total.</li>
+</ul>
+<h3>SQL</h3>
+<ul>
+<li>Data Definition Language: defines the schema of a database<ul>
+<li><code>CREATE TABLE Students (sid INT, name VARCHAR(20), login CHAR(10) major VARCHAR(20))</code></li>
+<li><code>DROP TABLE Students</code></li>
+<li><code>ALTER TABLE Students ADD COLUMN firstYear:integer</code></li>
+</ul>
+</li>
+<li>Data Manipulation Language: manipulates the instances of realtions<ul>
+<li><code>INSERT INTO Students (sid,name,faculty) VALUES(53688, Chang , Eng)</code></li>
+<li><code>DELETE FROM Students WHERE name = Chang</code></li>
+<li><code>UPDATE Students SET faculty = Science WHERE sid = 53688</code></li>
+<li><code>SELECT name, major FROM Students WHERE faculty = Science</code></li>
+</ul>
+</li>
+<li>Keys<ul>
+<li>Primary key: if more than one attribute has all unique values, choose one to be the primary key. Note, primary key can be a set of attributes.</li>
+<li>Foreign key: set of fields in one relation that is used to refer to a tuple in another relation.<ul>
+<li>Must correspond to the primary key of the second relation.</li>
+<li>Foreign key constraint: the foreign key value of a tuple must represent an existing tuple in the referred relation</li>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="n">Enrolled</span> <span class="p">(</span>
+    <span class="n">sid</span> <span class="nb">INT</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>  
+    <span class="n">cid</span> <span class="nb">CHAR</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>  
+    <span class="n">grade</span> <span class="nb">CHAR</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>  
+    <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">sid</span><span class="p">,</span><span class="n">cid</span><span class="p">),</span>  
+    <span class="k">FOREIGN</span> <span class="k">KEY</span> <span class="p">(</span><span class="n">sid</span><span class="p">)</span> <span class="k">REFERENCES</span> <span class="n">Students</span>
+<span class="p">);</span>
+</pre></div>
+
+
+<ul>
+<li>Select <code>SELECT desired attributes FROM list of relations WHERE qualification ORDER BY attributes ASC|DESC</code><ul>
+<li>desired attributes<ul>
+<li>renaming: <code>SELECT sname, rating+1 AS upgrade FROM Skaters</code></li>
+<li>duplicate elimination: <code>SELECT DISTINCT sname FROM Skaters</code></li>
+</ul>
+</li>
+<li>list of relations<ul>
+<li>comma between relations means cross product</li>
+<li>Join equals Cross Product and Selection<ul>
+<li><code>SELECT sname FROM Skaters S, Participates P WHERE S.sid = P.sid</code></li>
+<li><code>SELECT sname FROM Skaters JOIN Participates ON Skaters.sid = Participates.sid</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>qualification<ul>
+<li>attr1 op const OR attr1 op attr2</li>
+<li>op is one of &lt;, =, &gt;, &lt;&gt;, &lt;=, &gt;=, LIKE</li>
+<li><code>WHERE name = Cheng AND NOT age = 18</code></li>
+<li><code>WHERE name LIKE %e_g</code> (%: any string, _:any character)</li>
+<li>IN operator for nested query<ul>
+<li></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">S</span><span class="p">.</span><span class="n">sname</span>
+<span class="k">FROM</span> <span class="n">Skaters</span> <span class="n">S</span>
+<span class="k">WHERE</span> <span class="n">S</span><span class="p">.</span><span class="n">sid</span> <span class="k">IN</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">P</span><span class="p">.</span><span class="n">sid</span>
+                <span class="k">FROM</span> <span class="n">Participates</span> <span class="n">P</span>
+                <span class="k">WHERE</span> <span class="n">P</span><span class="p">.</span><span class="n">cid</span> <span class="o">=</span> <span class="mi">103</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>    - EXIST operator
+        -
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">S</span><span class="p">.</span><span class="n">sname</span>
+<span class="k">FROM</span> <span class="n">Skaters</span> <span class="n">S</span>
+<span class="k">WHERE</span> <span class="k">EXISTS</span> <span class="p">(</span><span class="k">SELECT</span> <span class="o">*</span>
+                <span class="k">FROM</span> <span class="n">Participated</span> <span class="n">P</span>
+                <span class="k">WHERE</span> <span class="n">P</span><span class="p">.</span><span class="n">cid</span> <span class="o">=</span> <span class="mi">103</span> <span class="k">AND</span>
+                <span class="n">P</span><span class="p">.</span><span class="n">sid</span> <span class="o">=</span> <span class="n">S</span><span class="p">.</span><span class="n">sid</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>    - ANY/ALL operator
+        - WHERE attr op ANY/ALL
+        - op is one of &lt;, =, &gt;, &lt;&gt;, &lt;=, &gt;=
+        -
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="o">*</span>
+<span class="k">FROM</span> <span class="n">Skaters</span>
+<span class="k">WHERE</span> <span class="n">rating</span> <span class="o">&gt;=</span> <span class="k">ALL</span> <span class="p">(</span><span class="k">SELECT</span> <span class="n">rating</span>
+                        <span class="k">FROM</span> <span class="n">Skaters</span><span class="p">)</span>
+</pre></div>
+
+
+<ul>
+<li>Union/Intersection/Difference<ul>
+<li>used between SELECT clauses</li>
+<li>same number of attributes on both side</li>
+<li>the attributes, taken in order, must have same type</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">SELECT</span> <span class="n">P</span><span class="p">.</span><span class="n">sid</span>
+<span class="k">FROM</span> <span class="n">Participates</span> <span class="n">P</span><span class="p">,</span> <span class="n">Competition</span> <span class="k">C</span>
+<span class="k">WHERE</span> <span class="n">P</span><span class="p">.</span><span class="n">cid</span> <span class="o">=</span> <span class="k">C</span><span class="p">.</span><span class="n">cid</span> <span class="k">AND</span> <span class="k">C</span><span class="p">.</span><span class="k">type</span> <span class="o">=</span> <span class="k">local</span>
+<span class="k">UNION</span>
+<span class="k">SELECT</span> <span class="n">P</span><span class="p">.</span><span class="n">sid</span>
+<span class="k">FROM</span> <span class="n">Participates</span> <span class="n">P</span><span class="p">,</span> <span class="n">Competition</span>
+<span class="k">WHERE</span> <span class="n">P</span><span class="p">.</span><span class="n">cid</span> <span class="o">=</span> <span class="k">C</span><span class="p">.</span><span class="n">cid</span> <span class="k">AND</span> <span class="k">C</span><span class="p">.</span><span class="k">type</span> <span class="o">=</span> <span class="n">regional</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>- UNOIN ALL/INTERSECT ALL/EXCEPT ALL does remove duplicates
+</pre></div>
+
+
+<ul>
+<li>
+<p>Join</p>
+<ul>
+<li>Inner join<ul>
+<li><code>SELECT * FROM A INNER JOIN B ON AA = BB</code></li>
+<li>Inner join only returns matched result, NULL tuples will be discarded</li>
+<li>A inner join B = B inner join A</li>
+</ul>
+</li>
+<li>Outer join<ul>
+<li>Left outer join<ul>
+<li><code>SELECT * FROM A LEFT OUTER JOIN B ON AA = BB</code><ul>
+<li>return all AA elements in table A, it will display NULL in BB column if it have a match</li>
+</ul>
+</li>
+<li><code>SELECT * FROM A LEFT OUTER JOIN B ON AA = BB WHERE BB is NULL</code><ul>
+<li>return elements in AA and not in BB</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Right outer join<ul>
+<li>similar to Left outer join but having all elements in the right table</li>
+</ul>
+</li>
+<li>Full outer join<ul>
+<li><code>SELECT * FROM A FULL JOIN B ON AA = BB</code></li>
+<li>having all elements in AA and BB</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Cross join<ul>
+<li><code>SELECT * FROM A CROSS JOIN B</code></li>
+<li>for each element in A, match every tuple in B with it</li>
+<li>this is a Cartesian product, the size of cross join is N*M</li>
+</ul>
+</li>
+<li><img alt="SQLJOIN" src="http://cdn.powerxing.com/imgs/sql-join.png" /></li>
+</ul>
+</li>
+<li>
+<p>Advanced SQL queries</p>
+<ul>
+<li>Aggregation<ul>
+<li>SUM, AVG, MAX, MIN apply to single attribute, count(*) apply to all rows</li>
+<li>Note: count(*) counts NULL values</li>
+<li><code>SELECT avg(age) FROM Skaters WHERE rating = 10</code></li>
+<li><code>SELECT count(DISTINCT sid) FROM Participates</code></li>
+<li>if any aggregation is used, all attributes listed in SELECT clause must either be aggregated or appear in a group-by clause</li>
+</ul>
+</li>
+<li>Grouping<ul>
+<li><code>SELECT avg(age) FROM Skaters GROUP BY rating</code></li>
+<li>A group is defined as a set of tuples that have the same value for all attributes in the grouping list</li>
+<li>One answer tuple is generated per group.</li>
+<li>Having clauses are selections on Groups<ul>
+<li>Only consider rating levels with at least two skaters:</li>
+<li><code>SELECT rating, min(age) FROM Skaters GROUP BY rating HAVING COUNT(*) &gt;= 2</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>View<ul>
+<li>A view is just an unmaterialized relation: we store a definition rather than a set of tuples.</li>
+<li>Use a view as intermediate relation<h2>- Find those ratings for which the average age is the minimum over all ratings</h2>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="k">Create</span> <span class="k">VIEW</span> <span class="n">Temp</span> <span class="p">(</span><span class="n">rating</span><span class="p">,</span> <span class="n">avgage</span><span class="p">)</span>
+    <span class="k">AS</span> <span class="k">SELECT</span> <span class="n">S</span><span class="p">.</span><span class="n">rating</span><span class="p">,</span> <span class="k">AVG</span> <span class="p">(</span><span class="n">S</span><span class="p">.</span><span class="n">age</span><span class="p">)</span> <span class="k">AS</span> <span class="n">avgage</span>
+        <span class="k">FROM</span> <span class="n">Skaters</span> <span class="n">S</span>
+        <span class="k">GROUP</span> <span class="k">BY</span> <span class="n">S</span><span class="p">.</span><span class="n">rating</span><span class="p">)</span>
+<span class="k">SELECT</span> <span class="n">T</span><span class="p">.</span><span class="n">rating</span><span class="p">,</span> <span class="n">T</span><span class="p">.</span><span class="n">avgage</span>
+    <span class="k">FROM</span> <span class="n">Temp</span> <span class="n">T</span>
+    <span class="k">WHERE</span> <span class="n">T</span><span class="p">.</span><span class="n">avgage</span> <span class="o">=</span> <span class="p">(</span><span class="k">SELECT</span> <span class="k">MIN</span> <span class="p">(</span><span class="n">T2</span><span class="p">.</span><span class="n">avgage</span><span class="p">)</span>
+                        <span class="k">FROM</span> <span class="n">Temp</span> <span class="n">T2</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>- TODO: Triggers/Constraints
+</pre></div>
+
+
+<hr />
+<h2>Network</h2>
+<h3>TCP/IP</h3>
+<ul>
+<li>
+<p>Comparison of TCP and UDP</p>
+<ul>
+<li>TCP is connection oriented protocol (UDP is connectionless)</li>
+<li>TCP is ordered, packages arrives in the sending order (UDP has no order)</li>
+<li>TCP can read multiple packages per read call (UDP can read only one per read call)</li>
+</ul>
+</li>
+<li>
+<p>TCP connection establishment</p>
+<ol>
+<li>SYN: Client sends a SYN to the server, setting the segment's sequence number to a random value A.</li>
+<li>SYN-ACK: Server replies with a SYN-ACK. The acknowledgment number is set to be A+1, and the server chooses another random number, B, as the sequence number.</li>
+<li>ACK: Client sends an ACK back to the server. The sequence number is set to A+1, and the acknowledgement number is set to B+1.</li>
+</ol>
+</li>
+<li>
+<p>HTTP</p>
+<ul>
+<li>HTTP Request<ul>
+<li>Request line <ul>
+<li>Request Method    <ul>
+<li>GET method stores information in the URL, usually used when requesting information from server</li>
+<li>POST method stores message in the request body, usually used when sending message to sever apps</li>
+</ul>
+</li>
+<li>Request-URL</li>
+<li>HTTP-Version</li>
+</ul>
+</li>
+<li>Header<ul>
+<li>Connection: Keep-Alive - This keeps the TCP connection between client and server</li>
+</ul>
+</li>
+<li>Body</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>Java</h2>
+<h3>Java Standard Library</h3>
+<p><strong>Hashtable vs HashMap vs HashSet</strong></p>
+<ul>
+<li>Hashtable<ul>
+<li>Hashtable<Integer, String> cityTable = new Hashtable<Integer, String>();</li>
+<li>Do not allow null for neither key nor value</li>
+<li>Synchronized. Only one thread can access at one time.</li>
+</ul>
+</li>
+<li>HashMap<ul>
+<li>HashMap<Integer, String> productMap = new HashMap<Integer,String>();</li>
+<li>Implement MAP interface</li>
+<li>Allows null for both key and value</li>
+<li>keySet() returns a set of keys; values() returns a collection of values</li>
+<li>Unsynchronized</li>
+</ul>
+</li>
+<li>HashSet<ul>
+<li>HashSet<String> stateSet = new HashSet<String>();</li>
+<li>Implement SET interface</li>
+<li>Do not allow duplicate values</li>
+<li>Provide add() method other than put() method</li>
+<li>Provide contains() method to check whether an object is already contained</li>
+<li>Should be used when needs to maintain a unique list</li>
+<li>Unsynchronized</li>
+</ul>
+</li>
+</ul>
+<h3>File Operations</h3>
+<ul>
+<li>FileInputStream/FileOutputStream<ul>
+<li>Read and write bytes from/to file or sockets</li>
+</ul>
+</li>
+<li>FileReader/FileWriter<ul>
+<li>FileReader extends InputStreamReader, it uses character encoding provided to this class</li>
+<li>You can specify the encoding format like "UTF-8" or "Unicode"</li>
+<li>default character encoding is the encoding of platform on which your Java program is running</li>
+<li>use BufferedReader(FileReader) to read lines<ul>
+<li>BufferedReader is synchronized</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Scanner<ul>
+<li>read file line by line</li>
+<li>can set patterns for dilimiting</li>
+<li>not synchronized</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[])</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">{</span>
+
+    <span class="c1">// FileInputStream/FileOutputStream example</span>
+    <span class="n">FileInputStream</span> <span class="n">fis</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileInputStream</span><span class="o">(</span><span class="s">&quot;input.txt&quot;</span><span class="o">);</span>
+    <span class="n">FileOutputStream</span> <span class="n">fos</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileOutputStream</span><span class="o">(</span><span class="s">&quot;output.txt&quot;</span><span class="o">);</span>
+    <span class="k">try</span> <span class="o">{</span> 
+        <span class="kt">int</span> <span class="n">data</span> <span class="o">=</span> <span class="n">fis</span><span class="o">.</span><span class="na">read</span><span class="o">();</span> 
+        <span class="k">while</span> <span class="o">(</span><span class="n">data</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span> 
+            <span class="n">fos</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">data</span><span class="o">);</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="n">fis</span><span class="o">.</span><span class="na">read</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span> 
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&quot;Failed to read binary data from File&quot;</span><span class="o">);</span> 
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span> 
+    <span class="o">}</span>
+
+    <span class="c1">// FileReader/FileWriter example</span>
+    <span class="n">FileReader</span> <span class="n">inputFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileReader</span><span class="o">(</span><span class="s">&quot;input.txt&quot;</span><span class="o">);</span>
+    <span class="n">FileWriter</span> <span class="n">outputFile</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FileWriter</span><span class="o">(</span><span class="s">&quot;output.txt&quot;</span><span class="o">);</span>
+    <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="n">inputFile</span><span class="o">);</span>
+    <span class="n">BufferedWriter</span> <span class="n">bw</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedWriter</span><span class="o">(</span><span class="n">outputFile</span><span class="o">);</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">String</span> <span class="n">s</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">s</span><span class="o">!=</span><span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">bw</span><span class="o">.</span><span class="na">write</span><span class="o">(</span><span class="n">s</span><span class="o">+</span><span class="sc">&#39;\n&#39;</span><span class="o">);</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">();</span>
+        <span class="o">}</span>
+    <span class="o">}</span><span class="k">finally</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">bw</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="n">bw</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span>
+
+    <span class="c1">// Scanner example</span>
+    <span class="n">File</span> <span class="n">file</span> <span class="o">=</span> <span class="k">new</span> <span class="n">File</span><span class="o">(</span><span class="s">&quot;input.txt&quot;</span><span class="o">);</span>
+    <span class="k">try</span> <span class="o">{</span>
+        <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">file</span><span class="o">);</span>
+        <span class="k">while</span> <span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">hasNextLine</span><span class="o">())</span> <span class="o">{</span>
+            <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">sc</span><span class="o">.</span><span class="na">nextLine</span><span class="o">());</span>
+        <span class="o">}</span>
+        <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="o">}</span> 
+    <span class="k">catch</span> <span class="o">(</span><span class="n">FileNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+
+
+<p><strong>ArrayList vs LinkedList vs Vector</strong></p>
+<ul>
+<li>ArrayList<ul>
+<li>Implemented with dynamically resizing array</li>
+<li>Fast at random accessing</li>
+<li>1.5 times of the size when expanding</li>
+</ul>
+</li>
+<li>LinkedList<ul>
+<li>Implemented with double linked list</li>
+<li>Have space overhead for storing pointers</li>
+<li>Fast at inserting new object at random place</li>
+</ul>
+</li>
+<li>Vector<ul>
+<li>Almost the same as ArrayList but synshronized</li>
+<li>Rarely used in practice</li>
+</ul>
+</li>
+</ul>
+<p>https://blog.udemy.com/java-interview-questions/</p>
+<hr />
+<h2>Python</h2>
+<h3>Built-in Structures in Python (List/Tuple/Dictionary/Set)</h3>
+<ul>
+<li>
+<p>List <code>list_ex=[1, 2, 3, 'a', object]</code></p>
+<ul>
+<li>List can store elements in any type </li>
+<li>List is changable</li>
+<li>List doesn't cost much memory but the searching time slows down as the size goes up</li>
+<li><code>list.append(x)</code> # x can be in any type and x will be appended to the end of the list</li>
+<li><code>list.entend(L)</code> # L has to be a list and the whole L will be appeneded to the list</li>
+<li><code>list.insert(i, x)</code> # insert element x at index i</li>
+<li><code>list.remove(x)</code> # remove the first appearance of x in the list, raise exception if not existed</li>
+<li><code>list.pop(i)</code> # remove and return element at i, i is len(list)-1 is not specified</li>
+<li><code>list[i]</code> # get items at index i, raise exception if out of range</li>
+<li><code>list.index(x)</code> # get the index of the first appearance of x, raise exception if not existed</li>
+<li><code>list.count(x)</code> # get the number of x existed in the list</li>
+<li><code>len(list)</code> # return the size of the list</li>
+<li><code>list.sort(parameters...)</code> # sort the list according to the parameters of the method, returns None</li>
+<li><code>list.reverse()</code> # reverse order of the list</li>
+</ul>
+</li>
+<li>
+<p>Tuple <code>tuple_ex=(1, 2, '3', 4, 5.555)</code></p>
+<ul>
+<li>Tuple is similar to List, but it is not changable<ul>
+<li>elements in a tuple cannot be changed but the content of the elment can be changed</li>
+<li><code>tuple_ex=(1, 2, List_ex)</code></li>
+<li><code>List_ex = ["things here can be changed"]</code></li>
+<li>insert()/append()/entend()/pop()/... cannot be applied to tuple due to the non-changeability</li>
+</ul>
+</li>
+<li><code>tuple_singular = (1,)</code> # comma needed when there is only one element in a tuple</li>
+</ul>
+</li>
+<li>
+<p>Dictionary <code>dict_ex={'key1':value1, 'key2':value2, 3:value3}</code></p>
+<ul>
+<li>Elements are unordered</li>
+<li>Fast at searching time but cost a lot of memory space</li>
+<li>keys in a dictionary must be unique</li>
+<li>keys must in non-changeable types like string, int, float...</li>
+<li><code>dict['key_n'] = value_n</code> # add an item to a dict</li>
+<li><code>dict.keys()</code> # get keys in a list</li>
+<li><code>dict.values()</code> # get values in a list</li>
+<li><code>if k in dict:</code> # ture is k is in the keys of dict</li>
+<li><code>dict['name']</code> # get the value of key 'name', raise exception if 'name' cannot be found</li>
+<li><code>dict.get('name', default)</code> # return dict['name'] if existed, return default value if not found</li>
+<li><code>sorted(d.items(), lambda x,y: cmp(x[1],y[1]))</code> # return sorted elements(tuples) by value in a list</li>
+<li><code>sorted(dict)</code> # return sorted keys in a list</li>
+</ul>
+</li>
+<li>
+<p>Set <code>set = {1, 2, 3, 4, a, 3, 2, 1}</code></p>
+<ul>
+<li>Elements are unordered and unique</li>
+<li>Like keys in Dictionary, set can only contains unchangeable types, i.e. it cannot have list/dict..</li>
+<li>the inner structure of set is similar to dictionary but is doesn't have values</li>
+<li><code>set(list_1)</code> # remove duplicats in a list and return it as a unordered set</li>
+<li><code>set(string_1)</code> # retrun a set of unique chars in string_1</li>
+<li><code>set.add(x)/remove(x)/discard(x)</code> # remove(x) raise KeyError if x not existed, discard(x) doesn't raise exception</li>
+<li><code>set.pop()</code> # remove a random element in set, raise KeyError if empty</li>
+<li><code>set.union(t)/intersection(t)/difference(t)/symmetric_difference(t)</code> # sets opeations</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2>Other Classic Coding Examples</h2>
+<h3>Eight Queen Puzzle Using Backtracking</h3>
+<div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">findNextPos</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">result</span><span class="o">,</span> <span class="kt">int</span> <span class="n">row</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">backTracking</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">start_col</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="kt">boolean</span> <span class="n">ok</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">backTracking</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">start_col</span> <span class="o">=</span> <span class="n">result</span><span class="o">[</span><span class="n">row</span><span class="o">]</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">col</span> <span class="o">=</span> <span class="n">start_col</span><span class="o">;</span> <span class="n">col</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">col</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">ok</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">r</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">row</span><span class="o">;</span> <span class="n">r</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">[</span><span class="n">r</span><span class="o">]</span> <span class="o">==</span> <span class="n">col</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">ok</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">result</span><span class="o">[</span><span class="n">r</span><span class="o">]</span> <span class="o">-</span> <span class="n">col</span> <span class="o">==</span> <span class="n">r</span> <span class="o">-</span> <span class="n">row</span> <span class="o">||</span> <span class="n">result</span><span class="o">[</span><span class="n">r</span><span class="o">]</span> <span class="o">-</span> <span class="n">col</span> <span class="o">==</span> <span class="n">row</span> <span class="o">-</span> <span class="n">r</span><span class="o">){</span>
+                <span class="n">ok</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
+                <span class="k">break</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">ok</span><span class="o">)</span>
+            <span class="k">return</span> <span class="n">col</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">eightQueen</span><span class="o">(</span><span class="kt">int</span> <span class="n">size</span><span class="o">)</span> <span class="o">{</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">size</span><span class="o">];</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+        <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="o">;</span> <span class="n">i</span><span class="o">++){</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">findNextPos</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">temp</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">size</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+            <span class="k">while</span> <span class="o">(</span><span class="kc">true</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">i</span><span class="o">--;</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="o">)</span> <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+                <span class="n">temp</span> <span class="o">=</span> <span class="n">findNextPos</span><span class="o">(</span><span class="n">result</span><span class="o">,</span> <span class="n">i</span><span class="o">,</span> <span class="kc">true</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">temp</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
+                    <span class="k">break</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+<span class="o">}</span>   
+</pre></div>
+  </div>
+  
+<div class="article-tag-list">
+<span class="label label-default">Tags</span>
+	<a href="/tag/interview.html"><i class="fa fa-tag"></i>interview</a>&nbsp;
+</div>  <hr />
+  <div class="well well-sm">  <!-- Social media sharing buttons -->
+
+    <!-- Google+ -->
+    <div class="g-plus" data-action="share" data-annotation="bubble"></div>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="g-plusone" data-size="medium"></div>&nbsp;
+
+    <!-- Facebook -->
+    <div class="fb-like" 
+        data-href="/dev-interview-crib-sheet.html" 
+        data-layout="button_count" 
+        data-action="like" data-show-faces="true" 
+        data-share="true">
+    </div>
+    &nbsp;
+  </div> <!-- /Social media sharing buttons -->
+</article>
+        </div><!-- /content -->
+
+        <div class="col-md-3 sidebar-nav" id="sidebar">
+
+<div class="row">
+
+<div class="col-xs-6 col-md-12">
+<h4><i class="fa fa-comment fa-fw fa-lg"></i> Social</h4>
+<ul class="list-unstyled social-links">
+    <li><a href="#" target="_blank">
+	  <i class="fa fa-comments fa-fw fa-lg" title="You can add links in your config file"></i>
+		You can add links in your config file
+	</a></li>
+    <li><a href="#" target="_blank">
+	  <i class="fa fa-comments fa-fw fa-lg" title="Another social link"></i>
+		Another social link
+	</a></li>
+</ul>
+</div>
+
+<div class="col-xs-6 col-md-12">
+<h4><i class="fa fa-folder fa-fw fa-lg"></i> Categories</h4>
+<ul class="list-unstyled category-links">
+  <li><a href="/category/tech.html" >
+    <i class="fa fa-folder-open fa-fw fa-lg"></i> Tech</a></li>
+</ul>
+</div>
+
+</div> <!-- /row -->
+
+<h4><i class="fa fa-link fa-fw fa-lg"></i> Links</h4>
+<ul class="list-unstyled category-links">
+  <li><a href="http://getpelican.com/" >
+    <i class="fa fa-fw fa-external-link-square fa-lg"></i> Pelican</a></li>
+  <li><a href="http://python.org/" >
+    <i class="fa fa-fw fa-external-link-square fa-lg"></i> Python.org</a></li>
+  <li><a href="http://jinja.pocoo.org/" >
+    <i class="fa fa-fw fa-external-link-square fa-lg"></i> Jinja2</a></li>
+  <li><a href="#" >
+    <i class="fa fa-fw fa-external-link-square fa-lg"></i> You can modify those links in your config file</a></li>
+</ul>
+
+<h4><i class="fa fa-tags fa-fw fa-lg"></i> Tags</h4>
+<p class="tag-cloud">
+</p>
+
+
+<hr />
+
+        </div><!--/sidebar -->
+      </div><!--/row-->
+    </div><!--/.container /#main-container -->
+
+    <footer id="site-footer">
+ 
+      <address id="site-colophon">
+        <p class="text-center text-muted">
+        Site built using <a href="http://getpelican.com/" target="_blank">Pelican</a>
+        &nbsp;&bull;&nbsp; Theme based on
+        <a href="http://www.voidynullness.net/page/voidy-bootstrap-pelican-theme/"
+           target="_blank">VoidyBootstrap</a> by 
+        <a href="http://www.robertiwancz.com/"
+           target="_blank">RKI</a>  
+        </p>
+      </address><!-- /colophon  -->
+    </footer>
+
+
+    <!-- javascript -->
+   
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+
+<!-- Facebook -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+</script>
+
+<!-- Twitter -->
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+<!-- Google+ -->
+<!-- Synchronous 
+<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+-->
+<!-- Asynchronous -->
+<script type="text/javascript">
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/platform.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>  </body>
+</html>
