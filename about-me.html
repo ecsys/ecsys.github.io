@@ -8,7 +8,7 @@
     <meta name="author" content="ecsys" />
     <meta name="generator" content="Pelican (VoidyBootstrap theme)" />
 
-    <title>Intro to Hadoop and MapReduce - Notes - ecsys's blog</title>
+    <title>About me - ecsys's blog</title>
 
    
         <link rel="stylesheet"
@@ -48,12 +48,6 @@
 
       <div class="collapse navbar-collapse" id="main-navbar-collapse">
         <ul class="nav navbar-nav">
-              <li>
-                <a href="https://ecsys.github.io/pages/about-me.html">About me</a>
-              </li>
-              <li>
-                <a href="https://ecsys.github.io/pages/bu-yao-dian.html">不要点</a>
-              </li>
             <li class="divider"></li>
             <li class="">
               <a href="https://ecsys.github.io/archives.html">Archives</a>
@@ -79,65 +73,29 @@
 <article itemscope="itemscope" itemtype="http://schema.org/BlogPosting">
   <header class="article-header">
 <abbr class="article-header-date">
-  Tue 03 November 2015
+  Tue 20 October 2015
 </abbr> <h1>
-  <a href="https://ecsys.github.io/intro-to-hadoop-and-mapreduce-notes.html" rel="bookmark"
-     title="Permalink to Intro to Hadoop and MapReduce - Notes">
-    Intro to Hadoop and MapReduce - Notes
+  <a href="https://ecsys.github.io/about-me.html" rel="bookmark"
+     title="Permalink to About me">
+    About me
   </a>
 </h1><div class="article-header-info">
   <p>
       Posted by <a href="https://ecsys.github.io/author/ecsys.html">Ecsys</a>
     in 
-    <a href="https://ecsys.github.io/category/tech.html">
-      Tech</a>
+    <a href="https://ecsys.github.io/category/about.html">
+      About</a>
     &nbsp;&nbsp;
   </p>
 </div> <!-- /.article-header-info -->  </header>
   <div class="content-body" itemprop="text articleBody">
-	<h2>Some Definitions to Begin with</h2>
-<ul>
-<li>Big data - the data that is too big to be processed on a single machine</li>
-<li>Volume - the size of the data</li>
-<li>Variety - data comes from a lot of sources and in different formats</li>
-<li>Velocity - the speed at which data is generated</li>
-<li>Core Hadoop<ul>
-<li>HDFS - Hadoop distributed file system, where the data is stored in a Hadoop project</li>
-<li>Cluster - A cluster is group of machines that are used to store the data</li>
-<li>MapReduce - used to process data</li>
-</ul>
-</li>
-<li>Hadoop Ecosystem - programs that are related to core Hadoop to make it easier to use<ul>
-<li>Hive turns SQL into mapreduce code (good at running long batch processing jobs)</li>
-<li>Pig allow users use simple script to analyse data rather that map reduce</li>
-<li>Impala provides a way to query data in HDFS with SQL without converting it to map reduce code (good at low latency queries)</li>
-<li>Sqoop put SQL database into HDFS</li>
-<li>HBase is a realtime database built on HDFS</li>
-<li>only to name a few, there are other tools including visulization tools, etc.</li>
-</ul>
-</li>
-</ul>
-<h2>Hadoop and MapReduce</h2>
-<h3>Intro to HDFS</h3>
-<p>When a file is loaded into HDFS, it is splitted to <strong>blocks</strong>(64 MB by default, name as blk_number). Blocks are stored in <strong>datanodes</strong> and the matadata of blocks are stored in a <strong>namenode</strong>. </p>
-<p>Hadoop replicates each block three times which means each block lives in three different datanodes. So if a single datanode fails, we have two other backup copies of the blocks in that node. When the namenode detects a faliure of a datanode, it will replicate all blocks in that node again so that we could have three copies of each block again.</p>
-<p>What if the namenode fails? Nowadays, we usually have two namenode in a cluster. One is the actice namenode and the other is the standby namenode in case the active one fails.</p>
-<p>HDFS scripting is similar to UNIX shell script.<br />
-<code>hadoop fs -put filename</code> to upload a file to HDFS
-<code>hadoop fs -tail filename</code> to display last few lines of the file
-<code>hadoop fs -rm filename</code> to delete a file in HDFS</p>
-<h3>Intro to MapReduce</h3>
-<p>MapReduce divides a file into chuncks and then process it in parallel. If we have a long file storing information of all sale records of different stores. Say we want to find the total amount of sales of each store. Traditionally we would have a hashtable where the key is name of the store and the value is the sales; and we read the file line by line to update the hashtable. This may cost super long time. MapReduce divide the original large file into chuncks and assign each chunck to a <strong>mapper</strong>. The mapper will read its chunck and group sale records by store name. Then there will be a few <strong>reducers</strong> collecting information from each mapper. For example, a reducer may collect NYC store's records from each mapper and add up values in these records to get the total sale at NYC store.</p>
-<p><strong>Mapper -&gt; Intermediate Record -&gt; Shuffle and Sort -&gt; Reducer -&gt; Result</strong></p>
-<p>Mappers are small programs deal with small amount of data and work in parallel. The output of mapper is called <strong>intermediate record</strong>, records are in format of (key, value). Once mappers are finished, a phase in mapreduce call <strong>Shuffle and Sort</strong> takes place. The Shuffle is the movement of the intermediate records from mappers to reducers. The Sort is the process that the reducers will sort these records into a sorted order. Finally, each reducer works on one set of records at a time, it gets the key and lists all the values. Then after doing some computation accroding to the program, it outputs the result.</p>
-<p>To run mapreduce(run python code using hadoop streaming) on HDFS: <code>hadoop fs jar hadoopStreamingFilePath.jar -mapper mapper.py -reducer reducer.py -file locationOfMapper.py -file locationOfReducer.py -input inputFileOnHDFS -output outputFileOnHDFS</code></p>
-<h3>MapReduce Code</h3>
+	<h3>Software developer @ Montreal</h3>
+<p>Vim is good. <br />
+I use spaces for indentation.<br />
+More to be added... </p>
   </div>
   
 <div class="article-tag-list">
-<span class="label label-default">Tags</span>
-	<a href="https://ecsys.github.io/tag/bigdata.html"><i class="fa fa-tag"></i>BigData</a>&nbsp;
-	<a href="https://ecsys.github.io/tag/hadoop.html"><i class="fa fa-tag"></i>Hadoop</a>&nbsp;
 </div>  <hr />
   <div class="well well-sm">  <!-- Social media sharing buttons -->
 
@@ -148,7 +106,7 @@
 
     <!-- Facebook -->
     <div class="fb-like" 
-        data-href="https://ecsys.github.io/intro-to-hadoop-and-mapreduce-notes.html" 
+        data-href="https://ecsys.github.io/about-me.html" 
         data-layout="button_count" 
         data-action="like" data-show-faces="true" 
         data-share="true">
@@ -192,6 +150,8 @@
 <div class="col-xs-6 col-md-12">
 <h4><i class="fa fa-folder fa-fw fa-lg"></i> Categories</h4>
 <ul class="list-unstyled category-links">
+  <li><a href="https://ecsys.github.io/category/about.html" >
+    <i class="fa fa-folder-open fa-fw fa-lg"></i> About</a></li>
   <li><a href="https://ecsys.github.io/category/tech.html" >
     <i class="fa fa-folder-open fa-fw fa-lg"></i> Tech</a></li>
 </ul>
@@ -202,24 +162,14 @@
 
 <h4><i class="fa fa-tags fa-fw fa-lg"></i> Tags</h4>
 <p class="tag-cloud">
-<span class="tag-[<pelican.contents.Article object at 0x7fea48feadd0>]">
+<span class="tag-[<pelican.contents.Article object at 0x7f37d3399dd0>]">
     <a href="https://ecsys.github.io/tag/interview.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>interview
     </a>
 </span>
-<span class="tag-[<pelican.contents.Article object at 0x7fea49055090>]">
+<span class="tag-[<pelican.contents.Article object at 0x7f37d3386090>]">
     <a href="https://ecsys.github.io/tag/c.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>C++
-    </a>
-</span>
-<span class="tag-[<pelican.contents.Article object at 0x7fea49090550>]">
-    <a href="https://ecsys.github.io/tag/bigdata.html">
-        <i class="fa fa-tag fa-fw fa-lg"></i>BigData
-    </a>
-</span>
-<span class="tag-[<pelican.contents.Article object at 0x7fea49090550>]">
-    <a href="https://ecsys.github.io/tag/hadoop.html">
-        <i class="fa fa-tag fa-fw fa-lg"></i>Hadoop
     </a>
 </span>
 </p>
