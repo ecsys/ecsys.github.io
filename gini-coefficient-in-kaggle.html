@@ -118,9 +118,7 @@
 <p>If your predictions are perfect, then the sorted actual data will have all ones at beginning and zeros afterwards. This leads to the unequal distribution and thus a high gini coefficient.</p>
 <p>If your predictions are random, then the sorted actual data will have zeros and ones randomly distributed, thus leads to a low gini coefficient.</p>
 <h2>Python Implementation</h2>
-<ul>
-<li>The <a href="https://www.kaggle.com/c/ClaimPredictionChallenge/discussion/703">code</a> is originally posted by Patrick *</li>
-</ul>
+<p><em>The <a href="https://www.kaggle.com/c/ClaimPredictionChallenge/discussion/703">code</a> is originally posted by Patrick</em></p>
 <h3>Equation</h3>
 <p><img alt="alt text" src="static/gini_equation.png" title="gini_equation" /></p>
 <h3>Code</h3>
@@ -136,8 +134,8 @@
 
 
 <h3>Example 1 (perfectly predicted)</h3>
-<p><code>predict = np.array([0.1, 0.2, 0.3, 0.4, 0.5])</code>
-<code>actual = np.array([1, 2, 3, 4, 5])</code></p>
+<p><code>predict = np.array([0.1, 0.2, 0.3, 0.4, 0.5])</code></p>
+<p><code>actual = np.array([1, 2, 3, 4, 5])</code></p>
 <div class="highlight"><pre><span></span>all:
 [[ 1.   0.1  0. ]
  [ 2.   0.2  1. ]
@@ -156,11 +154,11 @@
 </pre></div>
 
 
-<p><code>cumsumBySum = ([  5.   9.  12.  14.  15.]).sum() / sum</code>
-<code>gini = 0.266666666667</code></p>
+<p><code>cumsumBySum = ([  5.   9.  12.  14.  15.]).sum() / sum</code></p>
+<p><code>gini = 0.266666666667</code></p>
 <h3>Example 2</h3>
-<p><code>predict = np.array([0.1, 0.2, 0.5, 0.4, 0.3])</code>
-<code>actual = np.array([1, 2, 3, 4, 5])</code></p>
+<p><code>predict = np.array([0.1, 0.2, 0.5, 0.4, 0.3])</code></p>
+<p><code>actual = np.array([1, 2, 3, 4, 5])</code></p>
 <div class="highlight"><pre><span></span>all
 [[ 1.   0.1  0. ]
  [ 2.   0.2  1. ]
@@ -179,8 +177,8 @@
 </pre></div>
 
 
-<p><code>cumsumBySum = ([  3.   7.  12.  14.  15.]).sum() / sum</code> <strong>This makes cumsumBySum smaller than Example 1</strong>
-<code>gini = 0.16</code></p>
+<p><code>cumsumBySum = ([  3.   7.  12.  14.  15.]).sum() / sum</code> <strong>This makes cumsumBySum smaller than Example 1</strong></p>
+<p><code>gini = 0.16</code></p>
   </div>
   
 <div class="article-tag-list">
@@ -252,27 +250,27 @@
 
 <h4><i class="fa fa-tags fa-fw fa-lg"></i> Tags</h4>
 <p class="tag-cloud">
-<span class="tag-[<pelican.contents.Article object at 0x7f0264aab710>]">
+<span class="tag-[<pelican.contents.Article object at 0x7f3583660710>]">
     <a href="https://ecsys.github.io/tag/interview.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>interview
     </a>
 </span>
-<span class="tag-[<pelican.contents.Article object at 0x7f02635886d0>]">
+<span class="tag-[<pelican.contents.Article object at 0x7f358213d6d0>]">
     <a href="https://ecsys.github.io/tag/c.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>C++
     </a>
 </span>
-<span class="tag-[<pelican.contents.Article object at 0x7f0263deb750>]">
+<span class="tag-[<pelican.contents.Article object at 0x7f35829a0750>]">
     <a href="https://ecsys.github.io/tag/gini.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>Gini
     </a>
 </span>
-<span class="tag-[<pelican.contents.Article object at 0x7f0263deb750>]">
+<span class="tag-[<pelican.contents.Article object at 0x7f35829a0750>]">
     <a href="https://ecsys.github.io/tag/kaggle.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>Kaggle
     </a>
 </span>
-<span class="tag-[<pelican.contents.Article object at 0x7f0263deb750>]">
+<span class="tag-[<pelican.contents.Article object at 0x7f35829a0750>]">
     <a href="https://ecsys.github.io/tag/machine-learning.html">
         <i class="fa fa-tag fa-fw fa-lg"></i>Machine learning
     </a>
