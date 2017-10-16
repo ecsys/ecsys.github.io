@@ -1,5 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>ecsys's blog</title><link href="https://ecsys.github.io/" rel="alternate"></link><link href="https://ecsys.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://ecsys.github.io/</id><updated>2016-01-28T00:00:00-05:00</updated><entry><title>C++ Primer(5th Edition) Reading Notes</title><link href="https://ecsys.github.io/c-primer5th-edition-reading-notes.html" rel="alternate"></link><published>2016-01-28T00:00:00-05:00</published><updated>2016-01-28T00:00:00-05:00</updated><author><name>Ecsys</name></author><id>tag:ecsys.github.io,2016-01-28:c-primer5th-edition-reading-notes.html</id><summary type="html">&lt;p&gt;&lt;em&gt;I am a beginner in C++ with programming experience in Java and python. This is my reading notes of the &lt;strong&gt;C++ Primer 5E by Lippman, Lajoie, Moo&lt;/strong&gt; book.  I did not include every detail in this note but readers who have a solid background in any general-purpose languages and OOP should find no difficulty reading this.&lt;/em&gt;&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>ecsys's blog</title><link href="https://ecsys.github.io/" rel="alternate"></link><link href="https://ecsys.github.io/feeds/all-en.atom.xml" rel="self"></link><id>https://ecsys.github.io/</id><updated>2017-10-15T00:00:00-04:00</updated><entry><title>Gini Coefficient in Kaggle and Python Implementation</title><link href="https://ecsys.github.io/gini-coefficient-in-kaggle-and-python-implementation.html" rel="alternate"></link><published>2017-10-15T00:00:00-04:00</published><updated>2017-10-15T00:00:00-04:00</updated><author><name>Ecsys</name></author><id>tag:ecsys.github.io,2017-10-15:gini-coefficient-in-kaggle-and-python-implementation.html</id><summary type="html">&lt;h1&gt;Gini Coefficient in Kaggle and Python Implementation&lt;/h1&gt;
+&lt;p&gt;One of the Kaggle contest I am participating is using Normalized Gini Coefficient for the evaluation. Here is some notes to understand gini coefficient and how it works.&lt;/p&gt;
+&lt;h2&gt;Introduction to Gini Coefficient&lt;/h2&gt;
+&lt;p&gt;The gini coefficient is usually used in economics to measure the inequality. It ranges from 0 to 1. Gini coefficient of 0 indicates absolute equality and gini coefficient of 1 indicates absolute inequality. To give you an idea, the World Bank Gini Index is 46.1% for USA(2013), 33.7% for Canada(2010), and 27.3% for Sweden(2012).&lt;/p&gt;
+&lt;h2&gt;Mathematical Intuition&lt;/h2&gt;
+&lt;p&gt;The pink area shows how the wealth is distributed in the society.&lt;/p&gt;
+&lt;p&gt;&lt;img alt="alt text" src="static/gini_ex_1.png" title="gini_ex_1" /&gt;
+&lt;img alt="alt text" src="static/gini_ex_2.png" title="gini_ex_2" /&gt;
+&lt;img alt="alt text" src="static/gini_ex_3.png" title="gini_ex_3" /&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;The wealth is evenly distributed. G = 0.0&lt;/li&gt;
+&lt;li&gt;Suppose there are five persons in the society. We can see the second person has more wealth than the first one and the third has more than the second and so on. G = 0.267&lt;/li&gt;
+&lt;li&gt;The first four people have nothing and the last person possesses all the wealth. G = 0.8&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;The gini coefficient can be thought of G = Grey area / (Grey area + Pink area)&lt;/p&gt;
+&lt;h2&gt;Gini Coefficient in Kaggle&lt;/h2&gt;
+&lt;p&gt;In the competition &lt;a href="https://www.kaggle.com/c/porto-seguro-safe-driver-prediction"&gt;Porto Seguro’s Safe Driver Prediction&lt;/a&gt;, submissions are evaluated using the Normalized Gini Coefficient. &lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;During scoring, observations are sorted from the largest to the smallest predictions. Predictions are only used for ordering observations; therefore, the relative magnitude of the predictions are not used during scoring. The scoring algorithm then compares the cumulative proportion of positive class observations to a theoretical uniform proportion.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Observations means the actual data of the test set and the predictions means the data you submitted. They sort the actual data according to the predictions you submitted and then calculate the gini coefficient of the sorted actual data. &lt;/p&gt;
+&lt;p&gt;If your predictions are perfect, then the sorted actual data will have all ones at beginning and zeros afterwards. This leads to the unequal distribution and thus a high gini coefficient.&lt;/p&gt;
+&lt;p&gt;If your predictions are random, then the sorted actual data will have zeros and ones randomly distributed, thus leads to a low gini coefficient.&lt;/p&gt;
+&lt;h2&gt;Python Implementation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The &lt;a href="https://www.kaggle.com/c/ClaimPredictionChallenge/discussion/703"&gt;code&lt;/a&gt; is originally posted by Patrick *&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Equation&lt;/h3&gt;
+&lt;p&gt;&lt;img alt="alt text" src="static/gini_equation.png" title="gini_equation" /&gt;&lt;/p&gt;
+&lt;h3&gt;Code&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;gini&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;actual&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pred&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;cmpcol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;sortcol&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;assert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;actual&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;pred&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="nb"&gt;all&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;asarray&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;c_&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;actual&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;pred&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arange&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;actual&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;dtype&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;float&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="n"&gt;sortedAll&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;all&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt; &lt;span class="n"&gt;np&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;lexsort&lt;/span&gt;&lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="nb"&gt;all&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt;&lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="nb"&gt;all&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;]))&lt;/span&gt; &lt;span class="p"&gt;]&lt;/span&gt;
+    &lt;span class="nb"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sortedAll&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+    &lt;span class="n"&gt;cumsumBySum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;sortedAll&lt;/span&gt;&lt;span class="p"&gt;[:,&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;cumsum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;sum&lt;/span&gt;
+    &lt;span class="n"&gt;giniSum&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;cumsumBySum&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;actual&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;giniSum&lt;/span&gt; &lt;span class="o"&gt;/&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;actual&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;h3&gt;Example 1 (perfectly predicted)&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;predict = np.array([0.1, 0.2, 0.3, 0.4, 0.5])&lt;/code&gt;
+&lt;code&gt;actual = np.array([1, 2, 3, 4, 5])&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;all:
+[[ 1.   0.1  0. ]
+ [ 2.   0.2  1. ]
+ [ 3.   0.3  2. ]
+ [ 4.   0.4  3. ]
+ [ 5.   0.5  4. ]]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sortedAll:
+[[ 5.   0.5  4. ]
+ [ 4.   0.4  3. ]
+ [ 3.   0.3  2. ]
+ [ 2.   0.2  1. ]
+ [ 1.   0.1  0. ]]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;cumsumBySum = ([  5.   9.  12.  14.  15.]).sum() / sum&lt;/code&gt;
+&lt;code&gt;gini = 0.266666666667&lt;/code&gt;&lt;/p&gt;
+&lt;h3&gt;Example 2&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;predict = np.array([0.1, 0.2, 0.5, 0.4, 0.3])&lt;/code&gt;
+&lt;code&gt;actual = np.array([1, 2, 3, 4, 5])&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;all
+[[ 1.   0.1  0. ]
+ [ 2.   0.2  1. ]
+ [ 3.   0.5  2. ]
+ [ 4.   0.4  3. ]
+ [ 5.   0.3  4. ]]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sortedAll
+[[ 3.   0.5  2. ]
+ [ 4.   0.4  3. ]
+ [ 5.   0.3  4. ]
+ [ 2.   0.2  1. ]
+ [ 1.   0.1  0. ]]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;code&gt;cumsumBySum = ([  3.   7.  12.  14.  15.]).sum() / sum&lt;/code&gt; &lt;strong&gt;This makes cumsumBySum smaller than Example 1&lt;/strong&gt;
+&lt;code&gt;gini = 0.16&lt;/code&gt;&lt;/p&gt;</summary><category term="Kaggle"></category><category term="Gini"></category><category term="Machine learning"></category></entry><entry><title>C++ Primer(5th Edition) Reading Notes</title><link href="https://ecsys.github.io/c-primer5th-edition-reading-notes.html" rel="alternate"></link><published>2016-01-28T00:00:00-05:00</published><updated>2016-01-28T00:00:00-05:00</updated><author><name>Ecsys</name></author><id>tag:ecsys.github.io,2016-01-28:c-primer5th-edition-reading-notes.html</id><summary type="html">&lt;p&gt;&lt;em&gt;I am a beginner in C++ with programming experience in Java and python. This is my reading notes of the &lt;strong&gt;C++ Primer 5E by Lippman, Lajoie, Moo&lt;/strong&gt; book.  I did not include every detail in this note but readers who have a solid background in any general-purpose languages and OOP should find no difficulty reading this.&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;The structure of this note will strictly follow the book. I will try to make this note a brief summary of the book without losing any critical information.&lt;/em&gt;&lt;/p&gt;
 &lt;h2&gt;Chapter 2 Variables and Basic Types&lt;/h2&gt;
 &lt;h3&gt;2.1 Primitive Built-in Types&lt;/h3&gt;
